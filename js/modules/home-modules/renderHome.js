@@ -6,9 +6,7 @@ import { buttonTemplate } from '../../components/generic-components/buttonTempla
 import { alignmentFlex }  from '../../components/generic-components/alignmentElement.js';
 */
 import { createHTML }  from '../../components/createHTML.js';
-import { setSTYLE }    from '../../components/createHTML.js';
-
-
+import { createSTYLE }    from '../../components/createSTYLE.js';
 
 export function renderHome() {
     renderTitleGame();
@@ -22,7 +20,7 @@ function renderTitleGame(){
     createHTML( "DIV", "beforeEnd", ".titleGame", "lineToTitleGame", "" );
     createHTML( "DIV", "beforeEnd", ".titleGame", "creditsCreator",  "AlexsanderTech" );
 
-    setSTYLE("TEXT", ".titleGame", );
+    //  setSTYLE("TEXT", ".titleGame", );
 
 /*
     createSTYLE()

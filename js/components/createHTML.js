@@ -1,4 +1,4 @@
-import { createDivHTML } from "./generic-components/createDivHTML";
+import { createDivHTML } from "./generic-components/createDivHTML.js";
 
 export function createHTML(type, local, fatherDiv, className, texti){
     if(type=="DIV")

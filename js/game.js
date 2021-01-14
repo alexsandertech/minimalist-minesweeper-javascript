@@ -13,7 +13,7 @@ function main(){
         result  = {};
 
         options = home();//Incomplete
-        board   = inicializeBoard(options.typeBoard, options.difficulty);//Incomplete
+        //board   = inicializeBoard(options.typeBoard, options.difficulty);//Incomplete
 
         //result = mainGameLoop(board, options);
 
@@ -22,14 +22,3 @@ function main(){
 }
 
 main();
-
-
-
-
-/*
-function setColorMode(){
-    document.documentElement.style.setProperty('--bg-color', '#F5F8FA');
-    document.documentElement.style.setProperty('--bg-box-color', '#FFF');
-    document.documentElement.style.setProperty('--line-box-color', '#2CABFF');
-    document.documentElement.style.setProperty('--shadow-box-color', '#AFDFFF');
-}*/

@@ -1,4 +1,4 @@
-//import { renderHome }      from './home-modules/renderHome.js';
+import { renderHome }      from './home-modules/renderHome.js';
 //import { listenerButtons } from './home-modules/listenerButtons.js';
 
 export function home(){
@@ -14,12 +14,12 @@ export function home(){
     };//Initializing default options;    
     
     
-    //do{
-        //renderHome();
+    do{
+        renderHome();
         //button = listenerButtons();
         //flag = renderClicked(button);
         //flag = 
-    //}while(flag);
+    }while(flag);
 
     console.log("> Finalizing Home");
     return options;
