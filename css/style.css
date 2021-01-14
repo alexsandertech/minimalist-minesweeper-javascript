@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'Rubik Light';
+    src: url('../fonts/Rubik-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('../fonts/avenir-lt-std-85-heavy.otf');
+}
+
+:root{
+    --bg-color: #212325;/*F5F8FA*/
+
+    /*Color box*/
+    --bg-box-color:#212325;
+    --line-box-color:#4B4C4D;/*2CABFF*/
+    --shadow-box-color: #17181a;
+    
+    /*Color fonts*/
+    --font-color-title:#FFF;/*0093FF*/
+    --font-color-line:#3D4042;/*0093FF*/
+
+    /*Buttons Color*/
+    --bg-button-type-1:  #252F35;/*E0F3FF*/
+    --line-button-type-1:#3C677F;/*2CABFF*/
+
+    --bg-button-type-2:  #322628;/*E8D9D9*/
+    --line-button-type-2:#823738;/*D25353*/
+
+    --bg-button-type-3:  #212325;/*FFF*/
+    --line-button-type-3:#535455;/*36677F*/
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main{
+    height: 600px;
+    width: 1000px;
+}
+
+
+
+.button:hover{
+    filter: saturate(10);
+}
