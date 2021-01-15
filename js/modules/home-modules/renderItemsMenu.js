@@ -5,14 +5,11 @@ export async function renderItemsMenu(options){
     let selectedMenu = await getClicked();
     
     if(selectedMenu == ".btn-start")
-        options.start = true;
-    
-    if(selectedMenu == ".btn-instructions")
-        await renderInstructions();
-        
-    if(selectedMenu == ".btn-instructions")
-        options = await renderOptions();   
-
+        options.start = true;    
+    else if(selectedMenu == ".btn-instructions")
+        await renderInstructions();        
+    else if(selectedMenu == ".btn-options")
+        await renderOptions();   
 
     console.log(selectedMenu);
     return options;
@@ -21,7 +18,7 @@ export async function renderItemsMenu(options){
 export async function getClicked(){
     let flag = false;
     do{
-        await sleep(2000);
+        await sleep(1000);
         flag = returnActive();
     }while(flag==true);
     
