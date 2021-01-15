@@ -1,13 +1,35 @@
-export function listenerButtons() {
-    listenerElementId("start");
-    listenerElementId("instructions");
-    listenerElementId("options");
+export function listenerButtons() {    
+    resetListeners();
+
+    listenerElement(".btn-start", btnClickedStart);
+    listenerElement(".btn-instructions", btnClickedInstruction);
+    listenerElement(".btn-options", btnClickedOptions);
 }
 
-export function buttonClicked(){
-    console.log("opa");
+function resetListeners(){    
+    document.querySelector(".btn-start").classList.remove("active");    
+    document.querySelector(".btn-instructions").classList.remove("active");
+    document.querySelector(".btn-options").classList.remove("active");
 }
 
-function listenerElementId(item){
-    document.getElementById(item).addEventListener("click", buttonClicked);
+function listenerElement(item, func){
+    document.querySelector(item).addEventListener("click", func);
+}
+
+function btnClickedStart(){
+    document.querySelector(".btn-start").classList.add("active");    
+    document.querySelector(".btn-instructions").classList.remove("active");
+    document.querySelector(".btn-options").classList.remove("active");
+}
+
+function btnClickedInstruction(){
+    document.querySelector(".btn-instructions").classList.add("active");    
+    document.querySelector(".btn-start").classList.remove("active");
+    document.querySelector(".btn-options").classList.remove("active");
+}
+
+function btnClickedOptions(){
+    document.querySelector(".btn-options").classList.add("active");    
+    document.querySelector(".btn-instructions").classList.remove("active");
+    document.querySelector(".btn-start").classList.remove("active");
 }

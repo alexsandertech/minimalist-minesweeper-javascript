@@ -5,7 +5,7 @@ import { createSTYLE } from '../../components/createSTYLE.js';
 
 export function renderHome() {
     alignmentFlex("#game", "flex", "column", "space-evenly", "center");
-    
+
     renderTitleGame();
     renderBox();
     renderButtons();
@@ -15,7 +15,7 @@ function renderTitleGame(){
     createHTML( "DIV", "beforeEnd", "#game", "titleGame","MINESWEEPER" );
     createSTYLE("TITLE", "titleGame", 42, 5);
     createHTML( "DIV", "beforeEnd", ".titleGame", "lineToTitleGame", "" );
-    createSTYLE("LINE", "lineToTitleGame", 120);    
+    createSTYLE("LINE", "lineToTitleGame", 110);    
     createHTML( "DIV", "beforeEnd", ".titleGame", "creditsCreator",  "AlexsanderTech" );
     createSTYLE("CREDITS", "creditsCreator", 15, 1, "end");
 }
@@ -27,11 +27,11 @@ function renderBox(){
 }
 
 function renderButtons(){
-    createHTML( "DIV", "beforeEnd", ".baseBox", "button", "start");
-    createSTYLE("BTN", "button", 20, 1, 45, 130);
-    createHTML( "DIV", "beforeEnd", ".baseBox", "button-1", "instructions");
-    createSTYLE("BTN", "button-1", 19, 3, 45, 130);
-    createHTML( "DIV", "beforeEnd", ".baseBox", "button-2", "options");
-    createSTYLE("BTN", "button-2", 20, 3, 45, 130);
+    createHTML( "DIV", "beforeEnd", ".baseBox", "btn-start", "start");
+    createSTYLE("BTN", "btn-start", 20, 1, 45, 130);
+    createHTML( "DIV", "beforeEnd", ".baseBox", "btn-instructions", "instructions");
+    createSTYLE("BTN", "btn-instructions", 19, 3, 45, 130);
+    createHTML( "DIV", "beforeEnd", ".baseBox", "btn-options", "options");
+    createSTYLE("BTN", "btn-options", 20, 3, 45, 130);
                           // sizeFont, typeBtn, heighty, widthy)
 }

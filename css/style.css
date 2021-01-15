@@ -51,14 +51,12 @@ main{
     width: 1000px;
 }
 
-
-
-.button:hover{
+.btn-start:hover{
     filter: saturate(10);
 }
-.button-1:hover{
+.btn-instructions:hover{
     filter: saturate(10);
 }
-.button-2:hover{
+.btn-options:hover{
     filter: saturate(10);
 }

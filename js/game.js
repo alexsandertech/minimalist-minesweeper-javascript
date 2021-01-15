@@ -3,7 +3,8 @@ import { inicializeBoard } from './modules/structure.js';
 //import { mainGameLoop }    from './modules/.js';
 //import { final }           from './modules/final.js';
 
-function main(){
+async function main(){
+    console.log("Initializing");
     let options, board, result;
     let flag = true;
 
@@ -12,13 +13,14 @@ function main(){
         board   = {};
         result  = {};
 
-        options = home();// 20% Completed
-        //board   = inicializeBoard(options.typeBoard, options.difficulty);// 33% Completed
+        options = await home();// 20% Completed
+        //board   = await inicializeBoard(options.typeBoard, options.difficulty);// 33% Completed
 
-        //result = mainGameLoop(board, options); 0%
+        //result = await mainGameLoop(board, options); 0%
 
-        //flag = final(result);
+        //flag = await final(result);
     //}while(flag);
+    console.log("Finalizing");
 }
 
 main();
