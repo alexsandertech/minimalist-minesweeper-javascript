@@ -12,10 +12,10 @@ function main(){
         board   = {};
         result  = {};
 
-        options = home();//Incomplete
-        //board   = inicializeBoard(options.typeBoard, options.difficulty);//Incomplete
+        options = home();// 20% Completed
+        //board   = inicializeBoard(options.typeBoard, options.difficulty);// 33% Completed
 
-        //result = mainGameLoop(board, options);
+        //result = mainGameLoop(board, options); 0%
 
         //flag = final(result);
     //}while(flag);
