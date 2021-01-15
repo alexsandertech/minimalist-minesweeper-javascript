@@ -1,11 +1,14 @@
-export function setTitleSTYLE(classNameTitle, sizeTexti, spaceLetter, classNameLine, sizeLine){
+export function setTitleSTYLE(classNameTitle, sizeTexti, spaceLetter){
     let element = document.querySelector("." + classNameTitle);
-    let line    = document.querySelector("." + classNameLine);
 
     element.style.color         = 'var(--font-color-title)';
     element.style.fontFamily    = 'Avenir';
     element.style.fontSize      = sizeTexti +'px';
     element.style.letterSpacing = spaceLetter +'px';
+}
+
+export function setLineSTYLE(classNameLine, sizeLine){
+    let line    = document.querySelector("." + classNameLine);
 
     line.style.backgroundColor = 'var(--font-color-line)';
     line.style.height          = '3px';

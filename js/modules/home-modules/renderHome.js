@@ -1,74 +1,37 @@
-/*import { setTitleSTYLE }    from '../../components/generic-components/titleTemplate.js';
-import { setCreditsSTYLE }  from '../../components/generic-components/titleTemplate.js';
-
-import { setBoxSTYLE }      from '../../components/generic-components/boxTemplate.js';
-import { buttonTemplate } from '../../components/generic-components/buttonTemplate.js';
 import { alignmentFlex }  from '../../components/generic-components/alignmentElement.js';
-*/
+
 import { createHTML }  from '../../components/createHTML.js';
-import { createSTYLE }    from '../../components/createSTYLE.js';
+import { createSTYLE } from '../../components/createSTYLE.js';
 
 export function renderHome() {
+    alignmentFlex("#game", "flex", "column", "space-evenly", "center");
+    
     renderTitleGame();
-    /*renderBoxHome();
-    renderButtonsHome();*/
+    renderBox();
+    renderButtons();
 }
 
 function renderTitleGame(){
-
-    createHTML( "DIV", "beforeEnd", "#game",      "titleGame",       "MINESWEEPER" );
+    createHTML( "DIV", "beforeEnd", "#game", "titleGame","MINESWEEPER" );
+    createSTYLE("TITLE", "titleGame", 42, 5);
     createHTML( "DIV", "beforeEnd", ".titleGame", "lineToTitleGame", "" );
+    createSTYLE("LINE", "lineToTitleGame", 120);    
     createHTML( "DIV", "beforeEnd", ".titleGame", "creditsCreator",  "AlexsanderTech" );
-
-    //  setSTYLE("TEXT", ".titleGame", );
-
-/*
-    createSTYLE()
-
-    alignElement();
-
-    setTitleSTYLE("titleGame", 40, 10, "lineToTitleGame", 100);
-    setCreditsSTYLE("creditsCreator", 18, 1, "end");
-
-
-    el("#game").insertAdjacentHTML("beforeEnd", createDivHTML("titleGame", "MINESWEEPER")); 
-    el(".titleGame").insertAdjacentHTML("beforeEnd", createDivHTML("lineToTitleGame", ""));
-    el(".titleGame").insertAdjacentHTML("beforeEnd", createDivHTML("creditsCreator", "AlexsanderTech"));    
-   */ 
-
-
-    //alignmentFlex("#game", "flex", "column", "space-evenly", "center");
+    createSTYLE("CREDITS", "creditsCreator", 15, 1, "end");
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function renderBoxHome(){
-    el("#game").insertAdjacentHTML("beforeEnd", createDivHTML("baseBox", ""));
-    
-    setBoxSTYLE("baseBox", 300, 400, 2, 13,"var(--bg-box-color)", "var(--line-box-color)");
-      
+function renderBox(){
+    createHTML( "DIV", "beforeEnd", "#game", "baseBox", "" );
+    createSTYLE("BOX", "baseBox", 300, 370, 1, 7, "var(--bg-box-color)", "var(--line-box-color)");
     alignmentFlex(".baseBox", "flex", "column", "center", "center");
 }
 
-function renderButtonsHome(){
-    el(".baseBox").insertAdjacentHTML ("beforeEnd", buttonTemplate(40, 140, 1, "start", 20));
-    el(".baseBox").insertAdjacentHTML ("beforeEnd", buttonTemplate(40, 140, 3, "instructions", 19));
-    el(".baseBox").insertAdjacentHTML ("beforeEnd", buttonTemplate(40, 140, 3, "options", 20));
+function renderButtons(){
+    createHTML( "DIV", "beforeEnd", ".baseBox", "button", "start");
+    createSTYLE("BTN", "button", 20, 1, 45, 130);
+    createHTML( "DIV", "beforeEnd", ".baseBox", "button-1", "instructions");
+    createSTYLE("BTN", "button-1", 19, 3, 45, 130);
+    createHTML( "DIV", "beforeEnd", ".baseBox", "button-2", "options");
+    createSTYLE("BTN", "button-2", 20, 3, 45, 130);
+                          // sizeFont, typeBtn, heighty, widthy)
 }

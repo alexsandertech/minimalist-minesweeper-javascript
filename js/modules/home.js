@@ -14,12 +14,12 @@ export function home(){
     };//Initializing default options;    
     
     
-    do{
+    //do{
         renderHome();
         //button = listenerButtons();
         //flag = renderClicked(button);
         //flag = 
-    }while(flag);
+    //}while(flag);
 
     console.log("> Finalizing Home");
     return options;

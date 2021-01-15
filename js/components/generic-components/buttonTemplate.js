@@ -1,22 +1,19 @@
-export function buttonTemplate(heighty, widthy, typeBtn, text, sizeFont){
-    let component  = "<div class='button' ";
-        component  += "id='" + text + "' ";
-        component +=      "style='background-color: var(--bg-button-type-" + typeBtn +");";
-        component +=             'height: ' + heighty +'px;';
-        component +=             'width:  ' + widthy  +'px;';
-        component +=             'cursor:  pointer;';
-        component +=             'margin:  10px;';
-        component +=             'border-radius: 5px;';
-        component +=             'border: 1px solid var(--line-button-type-' + typeBtn +');';
-        
-        component +=             'display: flex;';
-        component +=             'justify-content: center;';
-        component +=             'align-items: center;';
+export function setButtonSTYLE(className, sizeFont, typeBtn, heighty, widthy){
+    let element = document.querySelector("." + className);
 
-        component +=             "font-family: Rubik Light;";
-        component +=             'font-size: '+ sizeFont +'px;';
-        component +=             'color: var(--line-button-type-' + typeBtn +');';
-        component += "'>" + text + "<div>";
+    element.style.fontSize   = sizeFont + "px";
+    element.style.fontFamily = "Rubik Light";
+    element.style.color      = 'var(--line-button-type-' + typeBtn +')';
     
-    return component;
+    element.style.display        = "flex";
+    element.style.justifyContent = "center";
+    element.style.alignItems     = "center";
+
+    element.style.backgroundColor = "var(--bg-button-type-" + typeBtn +")";
+    element.style.height          = heighty + 'px';
+    element.style.width           = widthy + 'px';
+    element.style.cursor          = "pointer";
+    element.style.margin          = "10px";
+    element.style.borderRadius    = "5px";
+    element.style.border          = '1px solid var(--line-button-type-' + typeBtn +')';
 }
