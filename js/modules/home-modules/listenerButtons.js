@@ -15,7 +15,7 @@ function resetListeners(){
     document.querySelector(".btn-options").classList.remove("active");
 }
 
-function listenerElement(item, func){
+export function listenerElement(item, func){
     document.querySelector(item).addEventListener("click", func);
 }
 

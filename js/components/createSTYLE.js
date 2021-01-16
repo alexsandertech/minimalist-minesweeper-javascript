@@ -5,6 +5,8 @@ import { setCreditsSTYLE } from "./generic-components/titleTemplate.js"
 import { setBoxSTYLE }     from "./generic-components/boxTemplate.js"
 import { setButtonSTYLE }  from "./generic-components/buttonTemplate.js"
 
+import { setBlurSTYLE }  from "./generic-components/modalTemplate.js"
+
 export function createSTYLE(type, className, ...attributes){
     if(type=="TITLE")    
         setTitleSTYLE(className, attributes[0], attributes[1]);
@@ -18,5 +20,8 @@ export function createSTYLE(type, className, ...attributes){
 
     if(type=="BTN")
         setButtonSTYLE(className, attributes[0], attributes[1], attributes[2], attributes[3]);
+
+    if(type=="MODAL")
+        setBlurSTYLE(className);
 
 }

@@ -31,6 +31,16 @@
     --line-button-type-3:#535455;/*36677F*/
 }
 
+@keyframes animationArise{
+    0%{
+        transform:translateY(50px);
+        opacity: 0;
+    }
+    100%{
+        transform:translateY(0);
+        opacity: 1;
+    }
+}
 *{
     margin: 0;
     padding: 0;
@@ -59,4 +69,7 @@ main{
 }
 .btn-options:hover{
     filter: saturate(10);
+}
+.backMenu:hover{
+    filter: saturate(4);
 }

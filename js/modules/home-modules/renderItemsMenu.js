@@ -7,7 +7,7 @@ export async function renderItemsMenu(options){
     if(selectedMenu == ".btn-start")
         options.start = true;    
     else if(selectedMenu == ".btn-instructions")
-        await renderInstructions();        
+        await renderInstructions(options.theme);        
     else if(selectedMenu == ".btn-options")
         await renderOptions();   
 
@@ -18,7 +18,7 @@ export async function renderItemsMenu(options){
 export async function getClicked(){
     let flag = false;
     do{
-        await sleep(1000);
+        await sleep(500);
         flag = returnActive();
     }while(flag==true);
     
