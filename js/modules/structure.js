@@ -1,11 +1,11 @@
 import { generateArray } from './structure-modules/generateArray.js';
 import { generateBombs } from './structure-modules/generateBombs.js';
 
-export function inicializeBoard(typeBoard, difficulty){
+export async function inicializeBoard(typeBoard, difficulty){
     console.log("> Initializing: Generate Board");
     
-    let board = generateArray(typeBoard, difficulty);
-        board = generateBombs(board);
+    let board = await generateArray(typeBoard, difficulty);
+        board = await generateBombs(board);
       //board.structure = generateNumbers(board);
 
     //options.

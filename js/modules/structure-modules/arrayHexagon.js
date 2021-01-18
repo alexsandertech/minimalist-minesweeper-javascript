@@ -1,13 +1,13 @@
-export function arrayHexagon( size ){
+export async function arrayHexagon( size ){
     let board = {};
 
-    board.structure = generateEmptyBoard(size);
-    board.totalValidCells = calcValidCells(size);
+    board.structure = await generateEmptyBoard(size);
+    board.totalValidCells = await calcValidCells(size);
 
     return board;
 }
 
-function generateEmptyBoard(size){    
+async function generateEmptyBoard(size){    
     console.log(" >> Generating empty board: Hexagonal Shape");
 
     let structureMatrizVoid = [];
@@ -48,7 +48,7 @@ function initRowMatrix(filledCellsInRow, voidCellsInRow){
     return arr;
 }
 
-function calcValidCells(size){
+async function calcValidCells(size){
     let middleRow = (size+1)/2;
     let totalCellsFilledInRow = middleRow;       
     let acc = 0;

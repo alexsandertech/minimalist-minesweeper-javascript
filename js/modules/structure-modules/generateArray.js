@@ -2,25 +2,26 @@ import { arrayTriangle } from "./arrayTriangle.js";
 import { arraySquare }   from "./arraySquare.js";
 import { arrayHexagon }  from "./arrayHexagon.js";
 
-export function generateArray( typeBoard, difficulty ){
+export async function generateArray( typeBoard, difficulty ){
     let board = {};
-    let size = getSizeRowColumn(difficulty);
+    let size = await getSizeRowColumn(difficulty);
     
     if(typeBoard == 'T')
-        board = arrayTriangle(size);
+        board = await arrayTriangle(size);
     if(typeBoard == 'S')
-        board = arraySquare(size);
+        board = await arraySquare(size);
     if(typeBoard == 'H')
-        board = arrayHexagon(size);
+        board = await arrayHexagon(size);
 
     board.type = typeBoard;
+    board.diff = difficulty;
 
     //console.log("Size: " + size + "\nObj: ");
     //console.log(board);
     return board;
 }
 
-function getSizeRowColumn(difficulty){
+async function getSizeRowColumn(difficulty){
     if(difficulty == 'E')//Easy
         return 11;
     if(difficulty == 'N')//Normal

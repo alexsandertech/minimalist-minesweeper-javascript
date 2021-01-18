@@ -1,13 +1,13 @@
-export function arraySquare( size ){
+export  async  function arraySquare( size ){
     let board = {};
 
-    board.structure = generateEmptyBoard(size);
-    board.totalValidCells = calcValidCells(size);
+    board.structure = await generateEmptyBoard(size);
+    board.totalValidCells = await calcValidCells(size);
 
     return board;
 }
 
-function generateEmptyBoard(size){    
+async function generateEmptyBoard(size){    
     console.log(" >> Generating empty board: Square Shape");
     let structureArrVoid = [];
 
@@ -26,6 +26,6 @@ function initRowMatrix(size){
     return auxArrRow;
 }
 
-function calcValidCells(size){
+async function calcValidCells(size){
     return (size*size);
 }

@@ -1,13 +1,13 @@
-export function arrayTriangle( size ){
+export  async  function arrayTriangle( size ){
     let board = {};
 
-    board.structure = generateEmptyBoard(size);
-    board.totalValidCells = calcValidCells(size);
+    board.structure = await generateEmptyBoard(size);
+    board.totalValidCells = await calcValidCells(size);
 
     return board;
 }
 
-function generateEmptyBoard(size){    
+async function generateEmptyBoard(size){    
     console.log(" >> Generating empty board: Triangular Shape");
     let structureMatrizVoid = [];
     let calcRows = Math.trunc(size/2);
@@ -38,7 +38,7 @@ function initRowMatrix(filledCellsInRow, voidCellsInRow){
     return arr;
 }
 
-function calcValidCells(size){
+async function calcValidCells(size){
     let calcRows = Math.trunc(size/2)+1;
     let totalCellsFilledInRow = 1;      
     let acc = 0;

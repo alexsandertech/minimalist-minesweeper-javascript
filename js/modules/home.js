@@ -13,15 +13,15 @@ export async function home(){
         theme      : "DARK",
         start      : false
     };//Initializing default options;    
-    
-    
+        
     renderHome();
     do {
         listenerButtons();
         options = await renderItemsMenu(options);
     } while (!options.start);
 
-
+    document.querySelector("#game").innerHTML = "";
+    
     console.log("> Finalizing Home");
     return options;
 }
