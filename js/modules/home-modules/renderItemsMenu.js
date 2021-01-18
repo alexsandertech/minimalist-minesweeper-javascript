@@ -1,21 +1,21 @@
 import { renderInstructions } from "./menu-modules/renderInstructions.js";
 import { renderOptions }      from "./menu-modules/renderOptions.js";
 
-export async function renderItemsMenu(options){
+export async function renderItemsMenu(options) {
     let selectedMenu = await getClicked();
     
     if(selectedMenu == ".btn-start")
-        options.start = true;    
+        options.start = true;
     else if(selectedMenu == ".btn-instructions")
         await renderInstructions(options.theme);        
     else if(selectedMenu == ".btn-options")
-        await renderOptions();   
+        options = await renderOptions(options);   
 
     console.log(selectedMenu);
     return options;
 }   
 
-export async function getClicked(){
+export async function getClicked() {
     let flag = false;
     do{
         await sleep(500);
@@ -29,7 +29,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function returnActive(){
+function returnActive() {
     if(checkActive(".btn-start"))
         return ".btn-start";
     if(checkActive(".btn-instructions"))
@@ -40,6 +40,6 @@ function returnActive(){
     return true;
 }
 
-function checkActive(item){
+function checkActive(item) {
     return document.querySelector(item).classList.contains("active");
 }

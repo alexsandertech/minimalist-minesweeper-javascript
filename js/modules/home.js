@@ -16,10 +16,10 @@ export async function home(){
     
     
     renderHome();
-    do{
+    do {
         listenerButtons();
         options = await renderItemsMenu(options);
-    }while(!options.start);
+    } while (!options.start);
 
 
     console.log("> Finalizing Home");

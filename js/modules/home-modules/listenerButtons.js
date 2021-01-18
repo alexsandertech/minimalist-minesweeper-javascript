@@ -9,28 +9,28 @@ export function listenerButtons() {
     listenerElement(".btn-options", btnClickedOptions);
 }
 
-function resetListeners(){    
+function resetListeners() {    
     document.querySelector(".btn-start").classList.remove("active");    
     document.querySelector(".btn-instructions").classList.remove("active");
     document.querySelector(".btn-options").classList.remove("active");
 }
 
-export function listenerElement(item, func){
+export function listenerElement(item, func) {
     document.querySelector(item).addEventListener("click", func);
 }
 
 
-function btnClickedStart(){
+function btnClickedStart() {
     resetListeners();
     document.querySelector(".btn-start").classList.add("active");    
 }
 
-function btnClickedInstruction(){
+function btnClickedInstruction() {
     resetListeners();
     document.querySelector(".btn-instructions").classList.add("active");    
 }
 
-function btnClickedOptions(){
+function btnClickedOptions() {
     resetListeners();
     document.querySelector(".btn-options").classList.add("active");    
 }
