@@ -1,12 +1,13 @@
 export async function generateBombs( board ){
-    board.totalBombs = getTotalBombs(board.totalValidCells, board.diff);
-
+    console.log(" >> Generating Bombs");
+    board.totalBombs = await getTotalBombs(board.totalValidCells, board.difficulty);
+    board.structure  = await setBombs(board.structure, board.totalBombs, board.column, board.row);
     
-
-    console.log(board);
+    console.log(" << Finished: Bombs generation");
+    return board;
 }
 
-function getTotalBombs(totalValidCells, difficulty){
+async function getTotalBombs(totalValidCells, difficulty){
     if(difficulty == 'E')//Easy
         return Math.trunc(totalValidCells*0.15);
     if(difficulty == 'N')//Normal
@@ -15,4 +16,36 @@ function getTotalBombs(totalValidCells, difficulty){
         return Math.trunc(totalValidCells*0.4);
     if(difficulty == 'I')//Impossible
         return Math.trunc(totalValidCells*0.4);
+}
+
+async function setBombs(board, totalBombs, column, row){
+    let coord = [];
+    let countBombs = 0;
+
+    do {
+        coord = getRandom(column, row);
+        let i = parseInt(coord[0]);
+        let j = parseInt(coord[1]);
+
+        if(validateCoord(board[i][j])) {
+            board[i][j] = 'B';
+            countBombs++;
+        }
+    } while(countBombs!=totalBombs);
+
+    return board;
+}
+
+function getRandom(column, row) {
+    let coord = [];
+    coord[0] = Math.floor(Math.random() * (row - 0)) + 0;
+    coord[1] = Math.floor(Math.random() * (column - 0)) + 0;
+    return coord;
+}
+
+function validateCoord(n){
+    if(n!=null && n!='B')
+        return true;
+    else
+        return false;
 }

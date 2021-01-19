@@ -11,7 +11,7 @@ export async function renderItemsMenu(options) {
     else if(selectedMenu == ".btn-options")
         options = await renderOptions(options);   
 
-    console.log(selectedMenu);
+    console.log("  Button selected: " + selectedMenu);
     return options;
 }   
 

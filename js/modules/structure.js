@@ -6,16 +6,8 @@ export async function inicializeBoard(typeBoard, difficulty){
     
     let board = await generateArray(typeBoard, difficulty);
         board = await generateBombs(board);
-      //board.structure = generateNumbers(board);
+        //board.structure = generateNumbers(board.structure. board.typeBoard)
+        //console.log(board);;
 
-    //options.
-
-
-    console.log("> Finalizing Generate Board");
+    console.log("< Finalizing: Generate Board");
 }
-
-/*
-  Lembrete
-    typeBoard  // H: Hexagon   | T: Triagle     | S: Square 
-    difficulty // E: Easy Mode | N: Normal Mode | H: Hard Mode | I:Impossible Mode
-*/

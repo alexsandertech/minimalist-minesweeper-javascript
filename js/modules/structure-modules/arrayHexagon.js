@@ -1,7 +1,10 @@
+import { generateViewBoard } from './generateViewBoard.js';
+
 export async function arrayHexagon( size ){
     let board = {};
 
     board.structure = await generateEmptyBoard(size);
+    board.view      = await generateViewBoard(board.structure);
     board.totalValidCells = await calcValidCells(size);
 
     return board;
@@ -30,7 +33,7 @@ async function generateEmptyBoard(size){
         totalCellsFilledInRow--;
     } 
 
-    console.log(" >> Finished empty board generation");
+    console.log(" << Finished empty board generation");
     return structureMatrizVoid;
 }
 

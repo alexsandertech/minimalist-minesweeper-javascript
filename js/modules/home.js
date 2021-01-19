@@ -6,8 +6,8 @@ export async function home(){
     console.log("> Initializing Home");
 
     let options = {
-        typeBoard  : "T",   // H: Hexagon   | T: Triagle     | S: Square 
-        difficulty : "E",   // E: Easy Mode | N: Normal Mode | H: Hard Mode | I:Impossible Mode
+        typeBoard  : "H",   // H: Hexagon   | T: Triagle     | S: Square 
+        difficulty : "H",   // E: Easy Mode | N: Normal Mode | H: Hard Mode | I:Impossible Mode
         sound      :  1,    // 1: ON        | -1: OFF
         music      :  1,
         theme      : "DARK",
@@ -22,6 +22,6 @@ export async function home(){
 
     document.querySelector("#game").innerHTML = "";
     
-    console.log("> Finalizing Home");
+    console.log("< Finalizing Home");
     return options;
 }

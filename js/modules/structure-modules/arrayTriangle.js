@@ -1,7 +1,10 @@
+import { generateViewBoard } from './generateViewBoard.js';
+
 export  async  function arrayTriangle( size ){
     let board = {};
 
     board.structure = await generateEmptyBoard(size);
+    board.view      = await generateViewBoard(board.structure);
     board.totalValidCells = await calcValidCells(size);
 
     return board;
@@ -19,7 +22,7 @@ async function generateEmptyBoard(size){
         totalCellsFilledInRow += 2;
         totalCellsVoidInRow -= 1;
     }
-    console.log(" >> Finished empty board generation");
+    console.log(" << Finished empty board generation");
     return structureMatrizVoid;
 }
 
@@ -50,3 +53,4 @@ async function calcValidCells(size){
 
     return acc;
 }
+

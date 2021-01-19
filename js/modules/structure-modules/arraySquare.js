@@ -1,7 +1,10 @@
+import { generateViewBoard } from './generateViewBoard.js';
+
 export  async  function arraySquare( size ){
     let board = {};
 
     board.structure = await generateEmptyBoard(size);
+    board.view      = await generateViewBoard(board.structure);
     board.totalValidCells = await calcValidCells(size);
 
     return board;
@@ -14,7 +17,7 @@ async function generateEmptyBoard(size){
     for(let i = 0; i < size; i++){
         structureArrVoid[i] = initRowMatrix(size);
     }
-    console.log(" >> Finished empty board generation");
+    console.log(" << Finished empty board generation");
     return structureArrVoid;
 }
 
