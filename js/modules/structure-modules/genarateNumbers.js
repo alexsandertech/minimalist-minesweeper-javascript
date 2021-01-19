@@ -1,10 +1,12 @@
 export async function generateNumbers(board, typeBoard){
+    console.log(" >> Generating Numbers");
     if(typeBoard == 'T')
         board = await generateNumTriangle(board);
     if(typeBoard == 'S')
         board = await generateNumSquare(board);
     if(typeBoard == 'H')
         board = await generateNumHexagon(board);
+    console.log(" << Finished: Numbers generation");
     return board;
 }
 

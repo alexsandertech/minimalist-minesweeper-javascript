@@ -13,9 +13,9 @@ async function main(){
         board   = {};
         result  = {};
 
-        options = await home();// 25% Completed
-        board   = await inicializeBoard(options.typeBoard, options.difficulty);// 33% Completed
-
+        options = await home();// 60% Completed
+        board   = await inicializeBoard(options.typeBoard, options.difficulty);// Completed
+        //console.log(board);
         //result = await mainGameLoop(board, options); 0%
 
         //flag = await final(result);
