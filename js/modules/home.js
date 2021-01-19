@@ -7,7 +7,7 @@ export async function home(){
 
     let options = {
         typeBoard  : "H",   // H: Hexagon   | T: Triagle     | S: Square 
-        difficulty : "H",   // E: Easy Mode | N: Normal Mode | H: Hard Mode | I:Impossible Mode
+        difficulty : "E",   // E: Easy Mode | N: Normal Mode | H: Hard Mode | I:Impossible Mode
         sound      :  1,    // 1: ON        | -1: OFF
         music      :  1,
         theme      : "DARK",
