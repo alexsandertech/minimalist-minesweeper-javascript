@@ -3,15 +3,16 @@ import { renderOptions }      from "./menu-modules/renderOptions.js";
 
 export async function renderItemsMenu(options) {
     let selectedMenu = await getClicked();
-    
+
+    console.log("  Button selected: " + selectedMenu);
+
     if(selectedMenu == ".btn-start")
         options.start = true;
     else if(selectedMenu == ".btn-instructions")
         await renderInstructions(options.theme);        
     else if(selectedMenu == ".btn-options")
-        options = await renderOptions(options);   
+        options = await renderOptions(options);
 
-    console.log("  Button selected: " + selectedMenu);
     return options;
 }   
 

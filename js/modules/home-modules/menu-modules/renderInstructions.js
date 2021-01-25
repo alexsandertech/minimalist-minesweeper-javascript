@@ -99,10 +99,8 @@ function renderInformations(theme){
     document.querySelector(".informations").style.marginBottom = "-30px";
     document.querySelector(".informations").style.marginLeft = "30px";
 
-    if(theme=="DARK")
-        document.querySelector(".informations").style.backgroundImage = "url(../../../../imgs/instructionDark.png)";
-    else
-        document.querySelector(".informations").style.backgroundImage = "url(../../../../imgs/instructionLight.png)";
+    document.querySelector(".informations").style.backgroundImage = "url(../../../../imgs/"+theme+"/instructionScreen.png)";
+
 
     document.querySelector(".informations").style.backgroundSize = "700px";
     document.querySelector(".informations").style.backgroundRepeat = "no-repeat";
