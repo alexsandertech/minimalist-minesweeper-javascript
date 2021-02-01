@@ -16,7 +16,7 @@ export async function renderOptions(options){
     options = updateOptions(options)
     removeRender();
     
-
+    console.log(options);
     return options;
 }
 
@@ -55,7 +55,6 @@ function renderTitles(){
         document.querySelector(".titleDifficulty").style.marginRight = "140px";
 }
 
-
 function renderButtonBack(){
     createHTML( "DIV", "beforeEnd", ".optionBox", "backMenu","back" );
     createSTYLE("BTN", "backMenu", 17, 2, 35, 100);
@@ -90,13 +89,10 @@ function returnActive(){
 }
 
 function renderOptionsSet(options){    
-    renderTotalSpaceOptions();
+    renderTotalSpaceOptions();//Creating window
     
     renderSideLeftOptions(options.typeBoard);//Board
     renderSideRightOptions(options.difficulty);//Difficulty and Theme
-    //renderOptionsBoard(options.theme);
-
-    //renderOptionsDifficulty();
 }
 
 function renderTotalSpaceOptions() {
@@ -108,18 +104,16 @@ function renderTotalSpaceOptions() {
 }
 
 function renderSideLeftOptions(typeBoard) {
-
-    renderVoidSpace();    
+    renderVoidSpaceLeft();//Creating empty left space   
     renderOptionsBoard(typeBoard);
     renderSelectionsOptionsBoard();
-
 }
 
-function renderVoidSpace(){
+function renderVoidSpaceLeft(){
     createHTML( "DIV", "beforeEnd", ".optionsSpace", "optionsSideLeft","" );
     document.querySelector(".optionsSideLeft").style.width = "50%";
     document.querySelector(".optionsSideLeft").style.height = "100%";
-    document.querySelector(".optionsSideLeft").style.borderRight = "3px solid var(--line-button-type-1)";
+    document.querySelector(".optionsSideLeft").style.borderRight = "2px solid var(--line-button-type-1)";
     document.querySelector(".optionsSideLeft").style.marginBottom = "30px";
 
     //document.querySelector(".optionsSideLeft").style.backgroundColor = "#F0F";
@@ -137,6 +131,7 @@ function renderSelectionsOptionsBoard(){
     document.getElementById('Hexagon').onchange = renderSelectedBoard;
     document.getElementById('Square').onchange = renderSelectedBoard;
 }
+
 function renderSelectedBoard(){
     let typeBoard = document.querySelector('input[name="optBoardShape"]:checked').value[0];
     let theme = window.getComputedStyle(document.body).getPropertyValue('--bg-box-color')=='#212325'? "DARK" : "LIGHT";
@@ -159,12 +154,12 @@ function renderOptionsBoard(typeBoard){
     document.querySelector(".sideScreenBoard").style.justifyContent = "space-around";
     document.querySelector(".sideScreenBoard").style.marginTop = "-12px";
 
+    //Options to select board format
     createHTML( "RD", "beforeEnd", ".sideScreenBoard", "optBoardShape","Triangle" );
     createHTML( "RD", "beforeEnd", ".sideScreenBoard", "optBoardShape","Square" );
     createHTML( "RD", "beforeEnd", ".sideScreenBoard", "optBoardShape","Hexagon" );
 
-
-    //document.querySelector('input[name="optBoardShape"]:checked').value
+    //Get typeBoard after-> document.querySelector('input[name="optBoardShape"]:checked').value
     if(typeBoard=='T') {
         document.getElementsByName('optBoardShape')[0].checked = true;
     } else if(typeBoard=='S') {
@@ -172,7 +167,6 @@ function renderOptionsBoard(typeBoard){
     } else if(typeBoard=='H') {
         document.getElementsByName('optBoardShape')[2].checked = true;
     }
-
     
     renderBtnSelectedBoardShape();
 }
@@ -219,27 +213,72 @@ function insertBtnOptionBoardShape(local, theme, typeBoard){
     }
 }
 
-function renderSideRightOptions(difficulty){    
-    createHTML( "DIV", "beforeEnd", ".optionsSpace", "optionsSideRight","" );
-    document.querySelector(".optionsSideRight").style.width = "50%";
-    document.querySelector(".optionsSideRight").style.height = "100%";
-    document.querySelector(".optionsSideRight").style.backgroundColor = "#00F";
+function renderSideRightOptions(difficulty){   
+    renderVoidSpaceRight(); //Creating empty right space
     
     renderOptionsDifficulty(difficulty);
     renderOptionsTheme();
 }
 
-function renderOptionsDifficulty(difficulty){
-    createHTML( "DIV", "beforeEnd", ".optionsSideRight", "sideScreenDifficulty","" );
-    document.querySelector(".sideScreenDifficulty").style.width = "100%";
-    document.querySelector(".sideScreenDifficulty").style.height = "40%";
-    document.querySelector(".sideScreenDifficulty").style.backgroundColor = "#066F";
+function renderVoidSpaceRight(){    
+    createHTML( "DIV", "beforeEnd", ".optionsSpace", "optionsSideRight","" );
+    document.querySelector(".optionsSideRight").style.width = "50%";
+    document.querySelector(".optionsSideRight").style.height = "100%";
+    //document.querySelector(".optionsSideRight").style.backgroundColor = "#00F";
+}
 
+function renderOptionsDifficulty(difficulty){
+
+    createHTML( "DIV", "beforeEnd", ".optionsSideRight", "btnDifficulty","" );
+    document.querySelector(".btnDifficulty").style.display = "flex";
+    document.querySelector(".btnDifficulty").style.flexDirection = "row";
+
+    btnLeftDifficulty();
+    btnMiddleDifficulty(difficulty);
+    btnRightDifficulty();
+    alignTextBtnDifficult();
+
+}
+
+function btnLeftDifficulty() {
+    createHTML( "DIV", "beforeEnd", ".btnDifficulty", "btnLeftDifficulty","" );
+    document.querySelector(".btnLeftDifficulty").style.height = "40px";
+    document.querySelector(".btnLeftDifficulty").style.width = "30px";
+    document.querySelector(".btnLeftDifficulty").style.marginTop= "20px";
+    document.querySelector(".btnLeftDifficulty").style.marginLeft= "auto";
+    document.querySelector(".btnLeftDifficulty").style.borderRadius = "10px 0px 0px 10px";
+    document.querySelector(".btnLeftDifficulty").style.marginBottom = "30px";
+    document.querySelector(".btnLeftDifficulty").style.cursor = "pointer";
+
+    document.querySelector(".btnLeftDifficulty").innerHTML = "<img unselectable='on' id='btnL'src=\'/imgs/moveLeftDifficulty.png\' width=\'12px\' />";
+    document.querySelector("#btnL").style.marginTop = "12px";
+    document.querySelector("#btnL").style.marginLeft = "8px";
+    document.querySelector('.btnLeftDifficulty').onclick = setNewDifficulty;
+}
+
+function btnMiddleDifficulty(difficulty){
     
-    createHTML( "RD", "beforeEnd", ".sideScreenDifficulty", "optDifficulty","Easy" );
-    createHTML( "RD", "beforeEnd", ".sideScreenDifficulty", "optDifficulty","Normal" );
-    createHTML( "RD", "beforeEnd", ".sideScreenDifficulty", "optDifficulty","Hard" );
-    createHTML( "RD", "beforeEnd", ".sideScreenDifficulty", "optDifficulty","Impossible" );
+    createHTML( "DIV", "beforeEnd", ".btnDifficulty", "btnMiddleDifficulty","" );
+    document.querySelector(".btnMiddleDifficulty").style.width = "150px";
+    document.querySelector(".btnMiddleDifficulty").style.height = "40px";
+    document.querySelector(".btnMiddleDifficulty").style.overflow = "hidden";
+    document.querySelector(".btnMiddleDifficulty").style.marginTop= "20px";
+    document.querySelector(".btnMiddleDifficulty").style.marginBottom = "30px";
+    
+    document.querySelector(".btnMiddleDifficulty").style.display = "flex";
+    document.querySelector(".btnMiddleDifficulty").style.flexDirection = "column";
+    document.querySelector(".btnMiddleDifficulty").style.alignItems = "center";
+
+    document.querySelector(".btnMiddleDifficulty").style.fontFamily = "Rubik Light";
+    document.querySelector(".btnMiddleDifficulty").style.color = "#FFF";
+
+    createHTML( "RD", "beforeEnd", ".btnMiddleDifficulty", "optDifficulty","Easy" );
+    createHTML( "RD", "beforeEnd", ".btnMiddleDifficulty", "optDifficulty","Normal" );
+    createHTML( "RD", "beforeEnd", ".btnMiddleDifficulty", "optDifficulty","Hard" );
+    createHTML( "RD", "beforeEnd", ".btnMiddleDifficulty", "optDifficulty","Impossible" );
+    
+    
+    //document.querySelector(".optDifficulty").style.width = "100px";
     //document.querySelector('input[name="optDifficulty"]:checked').value
     if(difficulty=='E')
         document.getElementsByName('optDifficulty')[0].checked = true;
@@ -249,21 +288,99 @@ function renderOptionsDifficulty(difficulty){
         document.getElementsByName('optDifficulty')[2].checked = true;
     else if(difficulty=='I')
         document.getElementsByName('optDifficulty')[3].checked = true;
+        
+    //alignTextBtnDifficult();
 }
 
-function renderOptionsTheme(){    
+function btnRightDifficulty(){
+    createHTML( "DIV", "beforeEnd", ".btnDifficulty", "btnRightDifficulty","" );
+    document.querySelector(".btnRightDifficulty").style.height = "40px";
+    document.querySelector(".btnRightDifficulty").style.width = "30px";
+    document.querySelector(".btnRightDifficulty").style.marginTop= "20px";
+    document.querySelector(".btnRightDifficulty").style.marginBottom = "30px";
+    document.querySelector(".btnRightDifficulty").style.marginRight= "auto";
+    document.querySelector(".btnRightDifficulty").style.cursor = "pointer";
+    document.querySelector(".btnRightDifficulty").style.borderRadius = "0px 10px 10px 0px";
+
+    document.querySelector(".btnRightDifficulty").innerHTML = "<img unselectable='on' id='btnR'src=\'/imgs/moveRighDifficulty.png\' width=\'12px\' />";
+    document.querySelector("#btnR").style.marginTop = "12px";
+    document.querySelector("#btnR").style.marginLeft = "8px";
+    document.querySelector('.btnRightDifficulty').onclick = setNewDifficulty;
+}
+
+function setNewDifficulty(){
+    if(this.className == "btnLeftDifficulty"){
+        if(document.getElementsByName('optDifficulty')[0].checked == true){
+            document.getElementsByName('optDifficulty')[3].checked = true;
+        } else if(document.getElementsByName('optDifficulty')[1].checked == true){            
+            document.getElementsByName('optDifficulty')[0].checked = true;
+        } else if(document.getElementsByName('optDifficulty')[2].checked == true){            
+            document.getElementsByName('optDifficulty')[1].checked = true;
+        } else if(document.getElementsByName('optDifficulty')[3].checked == true){            
+            document.getElementsByName('optDifficulty')[2].checked = true;
+        }
+    } else {
+        if(document.getElementsByName('optDifficulty')[0].checked == true){
+            document.getElementsByName('optDifficulty')[1].checked = true;
+        } else if(document.getElementsByName('optDifficulty')[1].checked == true){            
+            document.getElementsByName('optDifficulty')[2].checked = true;
+        } else if(document.getElementsByName('optDifficulty')[2].checked == true){            
+            document.getElementsByName('optDifficulty')[3].checked = true;
+        } else if(document.getElementsByName('optDifficulty')[3].checked == true){            
+            document.getElementsByName('optDifficulty')[0].checked = true;
+        }
+    }
+    alignTextBtnDifficult();
+}
+
+function alignTextBtnDifficult(){    
+    if(document.getElementsByName('optDifficulty')[0].checked == true){
+        document.querySelector(".classEasy").style.marginTop = "-10px";
+
+        document.querySelector(".btnMiddleDifficulty").style.backgroundColor = "#0F6FB6";
+        document.querySelector(".btnLeftDifficulty").style.backgroundColor = "#0093FF";
+        document.querySelector(".btnRightDifficulty").style.backgroundColor = "#0093FF";
+
+    } else if(document.getElementsByName('optDifficulty')[1].checked == true){   
+        document.querySelector(".classEasy").style.marginTop = "-48px";
+
+        document.querySelector(".btnMiddleDifficulty").style.backgroundColor = "#787979";
+        document.querySelector(".btnLeftDifficulty").style.backgroundColor = "#909192";
+        document.querySelector(".btnRightDifficulty").style.backgroundColor = "#909192";
+        
+    } else if(document.getElementsByName('optDifficulty')[2].checked == true){  
+        document.querySelector(".classEasy").style.marginTop = "-86px";
+        
+        document.querySelector(".btnMiddleDifficulty").style.backgroundColor = "#6D3737";
+        document.querySelector(".btnLeftDifficulty").style.backgroundColor = "#A83F3C";
+        document.querySelector(".btnRightDifficulty").style.backgroundColor = "#AA3F3C";
+        
+    } else if(document.getElementsByName('optDifficulty')[3].checked == true){  
+        document.querySelector(".classEasy").style.marginTop = "-124px";
+        
+        document.querySelector(".btnMiddleDifficulty").style.backgroundColor = "#0F0F0F";
+        document.querySelector(".btnLeftDifficulty").style.backgroundColor = "#1A1A1A";
+        document.querySelector(".btnRightDifficulty").style.backgroundColor = "#1A1A1A";
+        
+    }
+}
+
+function renderOptionsTheme(){
     createHTML( "DIV", "beforeEnd", ".optionsSideRight", "sideBoxTheme","" );
     document.querySelector(".sideBoxTheme").style.width = "100%";
     document.querySelector(".sideBoxTheme").style.height = "60%";
-    document.querySelector(".sideBoxTheme").style.backgroundColor = "#000";
 
     createHTML( "DIV", "beforeEnd", ".sideBoxTheme", "titleTheme","THEME" );
     createSTYLE("TITLE", "titleTheme", 16, 2);
         document.querySelector(".titleTheme").style.marginLeft = "170px";
     
     createHTML( "DIV", "beforeEnd", ".sideBoxTheme", "sideScreenTheme","" );
-    document.querySelector(".sideScreenTheme").style.width = "50px";
-    document.querySelector(".sideScreenTheme").style.backgroundColor = "#FAF";
+    document.querySelector(".sideScreenTheme").style.width = "300px";
+    document.querySelector(".sideScreenTheme").style.margin = "auto";
+    document.querySelector(".sideScreenTheme").style.marginTop = "25px";
+
+
+    renderBtnSetTheme();
     
     document.querySelector(".sideScreenTheme").style.height = "50px";
     document.querySelector(".sideScreenTheme").style.cursor = "pointer";
@@ -274,7 +391,17 @@ function renderOptionsTheme(){
            //Update colors menu options
            renderBtnSelectedBoardShape();
            renderSelectedBoard();
+           renderBtnSetTheme()
     };
+}
+
+function renderBtnSetTheme(){
+    let theme = window.getComputedStyle(document.body).getPropertyValue('--bg-box-color')=='#212325'? "DARK" : "LIGHT";
+    //document.querySelector(".sideScreenTheme").style.backgroundColor = "#FAF";
+    document.querySelector(".sideScreenTheme").style.backgroundImage = "url(./../../../imgs/"+theme+"/themeSet.png)";
+    document.querySelector(".sideScreenTheme").style.backgroundSize = "250px";
+    document.querySelector(".sideScreenTheme").style.backgroundPosition = "center";
+    document.querySelector(".sideScreenTheme").style.backgroundRepeat = "no-repeat";
 }
 
 function updateOptions(options){
