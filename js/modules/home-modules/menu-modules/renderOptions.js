@@ -104,31 +104,119 @@ function renderTotalSpaceOptions() {
     document.querySelector(".optionsSpace").style.height = "265px";
     document.querySelector(".optionsSpace").style.marginTop = "15px";
     document.querySelector(".optionsSpace").style.marginBottom = "-0px";
-    document.querySelector(".optionsSpace").style.backgroundColor = "#FFF";
     alignmentFlex(".optionsSpace", "flex", "row", "center", "center");
 }
 
 function renderSideLeftOptions(typeBoard) {
+
+    renderVoidSpace();    
+    renderOptionsBoard(typeBoard);
+    renderSelectionsOptionsBoard();
+
+}
+
+function renderVoidSpace(){
     createHTML( "DIV", "beforeEnd", ".optionsSpace", "optionsSideLeft","" );
     document.querySelector(".optionsSideLeft").style.width = "50%";
     document.querySelector(".optionsSideLeft").style.height = "100%";
-    document.querySelector(".optionsSideLeft").style.backgroundColor = "#F0F";
+    document.querySelector(".optionsSideLeft").style.borderRight = "3px solid var(--line-button-type-1)";
+    document.querySelector(".optionsSideLeft").style.marginBottom = "30px";
 
-    renderOptionsBoard(typeBoard);
+    //document.querySelector(".optionsSideLeft").style.backgroundColor = "#F0F";
+}
+
+function renderSelectionsOptionsBoard(){
+    createHTML( "DIV", "afterbegin", ".optionsSideLeft", "selectedTypeBoard","" );
+    document.querySelector(".selectedTypeBoard").style.width = "100%";
+    document.querySelector(".selectedTypeBoard").style.height = "60%";
+    document.querySelector(".selectedTypeBoard").style.backgroundPosition = "center";
+    document.querySelector(".selectedTypeBoard").style.backgroundRepeat = "no-repeat";
+    
+    renderSelectedBoard();
+    document.getElementById('Triangle').onchange = renderSelectedBoard;
+    document.getElementById('Hexagon').onchange = renderSelectedBoard;
+    document.getElementById('Square').onchange = renderSelectedBoard;
+}
+function renderSelectedBoard(){
+    let typeBoard = document.querySelector('input[name="optBoardShape"]:checked').value[0];
+    let theme = window.getComputedStyle(document.body).getPropertyValue('--bg-box-color')=='#212325'? "DARK" : "LIGHT";
+
+    if(document.getElementsByName('optBoardShape')[2].checked == true || typeBoard=='H')
+        document.querySelector(".selectedTypeBoard").style.backgroundImage = "url(./../../../imgs/"+theme+"/cellHexagon.png)";
+    else if(document.getElementsByName('optBoardShape')[1].checked == true || typeBoard=='S')
+        document.querySelector(".selectedTypeBoard").style.backgroundImage = "url(./../../../imgs/"+theme+"/cellSquare.png)";
+    else if(document.getElementsByName('optBoardShape')[0].checked == true || typeBoard=='T')
+        document.querySelector(".selectedTypeBoard").style.backgroundImage = "url(./../../../imgs/"+theme+"/cellTriangle.png)";
+    
+    //Update option board selected
+    renderBtnSelectedBoardShape();
 }
 
 function renderOptionsBoard(typeBoard){
     createHTML( "DIV", "beforeEnd", ".optionsSideLeft", "sideScreenBoard","" );
+    document.querySelector(".sideScreenBoard").style.display = "flex";
+    document.querySelector(".sideScreenBoard").style.flexDirection = "row";
+    document.querySelector(".sideScreenBoard").style.justifyContent = "space-around";
+    document.querySelector(".sideScreenBoard").style.marginTop = "-12px";
+
     createHTML( "RD", "beforeEnd", ".sideScreenBoard", "optBoardShape","Triangle" );
     createHTML( "RD", "beforeEnd", ".sideScreenBoard", "optBoardShape","Square" );
     createHTML( "RD", "beforeEnd", ".sideScreenBoard", "optBoardShape","Hexagon" );
+
+
     //document.querySelector('input[name="optBoardShape"]:checked').value
-    if(typeBoard=='T')
+    if(typeBoard=='T') {
         document.getElementsByName('optBoardShape')[0].checked = true;
-    else if(typeBoard=='S')
+    } else if(typeBoard=='S') {
         document.getElementsByName('optBoardShape')[1].checked = true;
-    else if(typeBoard=='H')
+    } else if(typeBoard=='H') {
         document.getElementsByName('optBoardShape')[2].checked = true;
+    }
+
+    
+    renderBtnSelectedBoardShape();
+}
+
+function renderBtnSelectedBoardShape(){
+    let theme = window.getComputedStyle(document.body).getPropertyValue('--bg-box-color')=='#212325'? "DARK" : "LIGHT";
+    let typeBoard = document.querySelector('input[name="optBoardShape"]:checked').value;
+    //document.getElementsByName('optBoardShape')[0].checked = true;
+    
+    insertBtnOptionBoardShape("Triangle", theme, typeBoard);
+    insertBtnOptionBoardShape("Square", theme, typeBoard);
+    insertBtnOptionBoardShape("Hexagon", theme, typeBoard);
+}
+
+function insertBtnOptionBoardShape(local, theme, typeBoard){
+    
+    //let oldHTML = document.getElementById("label"+local).innerHTML;
+    //document.querySelector("#label"+local).innerHTML = "<img src=\"http://placehold.it/350x350\" width=\"40px\">" + oldHTML;
+
+    document.querySelector("#label"+local).style.backgroundImage = "url(./../../../imgs/"+theme+"/cell"+local+".png)";    
+    document.querySelector("#label"+local).style.backgroundPosition = "50% 15%";
+    document.querySelector("#label"+local).style.backgroundRepeat = "no-repeat";
+    document.querySelector("#label"+local).style.backgroundSize = "40px";
+    
+    document.querySelector("#label"+local).style.fontFamily = "Rubik Light";
+    document.querySelector("#label"+local).style.fontSize = "12px";
+    document.querySelector("#label"+local).style.color = "var(--font-color-line)";
+    document.querySelector("#label"+local).style.cursor = "pointer";
+
+    document.querySelector("#label"+local).style.display = "flex";
+    document.querySelector("#label"+local).style.flexDirection = "column";
+    document.querySelector("#label"+local).style.alignItems = "center";
+    document.querySelector("#label"+local).style.justifyContent = "flex-end";
+    document.querySelector("#label"+local).style.width = "90px";
+    document.querySelector("#label"+local).style.height = "70px";
+    document.querySelector("#label"+local).style.padding = "3px";
+
+    document.querySelector("#label"+local).style.boderRadius = "";
+    document.querySelector("#label"+local).style.boxShadow = "";
+
+    if(typeBoard == local){
+        document.querySelector("#label"+local).style.borderRadius = "5px";
+        document.querySelector("#label"+local).style.boxShadow = "1px 1px 10px var(--shadow-box-color-btn)";
+    }
 }
 
 function renderSideRightOptions(difficulty){    
@@ -182,13 +270,17 @@ function renderOptionsTheme(){
     
     document.querySelector('.sideScreenTheme').onclick =  function() {
            setColorMode();
+
+           //Update colors menu options
+           renderBtnSelectedBoardShape();
+           renderSelectedBoard();
     };
 }
 
 function updateOptions(options){
     options.difficulty = document.querySelector('input[name="optDifficulty"]:checked').value[0];
     options.typeBoard = document.querySelector('input[name="optBoardShape"]:checked').value[0];
-    
+
     if(window.getComputedStyle(document.body).getPropertyValue('--bg-box-color')=='#212325')
         options.theme = 'DARK';
     else 

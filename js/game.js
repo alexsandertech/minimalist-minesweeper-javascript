@@ -4,6 +4,7 @@ import { inicializeBoard } from './modules/structure.js';
 //import { final }           from './modules/final.js';
 
 async function main(){
+    document.querySelector("body").style.b
     console.log("Initializing");
     let options, board, result;
     let flag = true;
@@ -13,9 +14,9 @@ async function main(){
         board   = {};
         result  = {};
 
-        options = await home();// 60% Completed
+        options = await home();// 70% Completed
         board   = await inicializeBoard(options.typeBoard, options.difficulty);// Completed
-        //console.log(board);
+        console.log(board);
         //result = await mainGameLoop(board, options); 0%
 
         //flag = await final(result);

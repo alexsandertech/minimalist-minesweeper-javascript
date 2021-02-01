@@ -8,7 +8,7 @@ import { listenerElement } from "../listenerButtons.js";
 export async function renderInstructions(theme){
     renderBox();
     renderTitles();
-    renderInformations(theme);
+    await renderInformations(theme);
     renderButtonBack();
 
     await listenerClickBtnBack();
@@ -92,15 +92,14 @@ function returnActive(){
 
 
 
-function renderInformations(theme){
+async function renderInformations(theme){
     createHTML( "DIV", "beforeEnd", ".instructionBox", "informations","" );
     document.querySelector(".informations").style.height = "280px";
     document.querySelector(".informations").style.marginTop = "30px";
     document.querySelector(".informations").style.marginBottom = "-30px";
     document.querySelector(".informations").style.marginLeft = "30px";
 
-    document.querySelector(".informations").style.backgroundImage = "url(../../../../imgs/"+theme+"/instructionScreen.png)";
-
+    document.querySelector(".informations").style.backgroundImage = "url(./../../../imgs/"+theme+"/instructionScreen.png)";
 
     document.querySelector(".informations").style.backgroundSize = "700px";
     document.querySelector(".informations").style.backgroundRepeat = "no-repeat";

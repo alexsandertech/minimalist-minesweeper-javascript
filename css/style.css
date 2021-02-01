@@ -15,6 +15,7 @@
     --bg-box-color:#212325;
     --line-box-color:#4B4C4D;/*2CABFF*/
     --shadow-box-color: #17181a;
+    --shadow-box-color-btn: #0f1011;;
     
     /*Color fonts*/
     --font-color-title:#FFF;/*0093FF*/
@@ -50,10 +51,10 @@
 body{
     height: 100vh;
     width: 100vw;
-    background-color: var(--bg-color);
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--bg-color);
 }
 
 main{
@@ -62,7 +63,7 @@ main{
 }
 
 .btn-start:hover{
-    filter: saturate(10);
+    filter: saturate(3);
 }
 .btn-instructions:hover{
     filter: saturate(10);
@@ -73,3 +74,11 @@ main{
 .backMenu:hover{
     filter: saturate(4);
 }
+
+input{
+    display: none;
+}
+/*
+main:hover{
+    transform: scale(0.7);
+}*/

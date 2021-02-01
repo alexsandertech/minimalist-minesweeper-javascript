@@ -33,6 +33,8 @@ export function setColorMode(){
         document.documentElement.style.setProperty('--bg-box-color', '#FFF');
         document.documentElement.style.setProperty('--line-box-color', '#2CABFF');
         document.documentElement.style.setProperty('--shadow-box-color', '#AFDFFF');
+        
+        document.documentElement.style.setProperty('--shadow-box-color-btn', '#2CABFF');
 
         document.documentElement.style.setProperty('--font-color-title', '#0093FF');
         document.documentElement.style.setProperty('--font-color-line', '#0093FF');
@@ -45,12 +47,16 @@ export function setColorMode(){
 
         document.documentElement.style.setProperty('--bg-button-type-3', '#FFF');
         document.documentElement.style.setProperty('--line-button-type-3', '#36677F');
+        
+
     } else {
         document.documentElement.style.setProperty('--bg-color', '#212325');
 
         document.documentElement.style.setProperty('--bg-box-color', '#212325');
         document.documentElement.style.setProperty('--line-box-color', '#4B4C4D');
         document.documentElement.style.setProperty('--shadow-box-color', '#17181a');
+
+        document.documentElement.style.setProperty('--shadow-box-color-btn', '#0f1011');
 
         document.documentElement.style.setProperty('--font-color-title', '#FFF');
         document.documentElement.style.setProperty('--font-color-line', '#3D4042');
