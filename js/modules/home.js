@@ -29,6 +29,7 @@ export function setColorMode(){
     
     if(window.getComputedStyle(document.body).getPropertyValue('--bg-box-color')=='#212325'){
         document.documentElement.style.setProperty('--bg-color', '#F5F8FA');
+        document.documentElement.style.setProperty('--bg-box-main', '#FFF');
 
         document.documentElement.style.setProperty('--bg-box-color', '#FFF');
         document.documentElement.style.setProperty('--line-box-color', '#2CABFF');
@@ -51,6 +52,8 @@ export function setColorMode(){
 
     } else {
         document.documentElement.style.setProperty('--bg-color', '#212325');
+        document.documentElement.style.setProperty('--bg-box-main', '#202D2D');
+
 
         document.documentElement.style.setProperty('--bg-box-color', '#212325');
         document.documentElement.style.setProperty('--line-box-color', '#4B4C4D');

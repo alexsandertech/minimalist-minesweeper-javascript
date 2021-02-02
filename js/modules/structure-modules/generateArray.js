@@ -14,7 +14,7 @@ export async function generateArray( typeB, diff ){
         board = await arrayHexagon(size);
 
     if(typeB == 'T')
-        board.row = Math.trunc(size/2);
+        board.row = Math.trunc(size/2)+1;
     else
         board.row = size;        
     board.column    = size;
@@ -26,11 +26,11 @@ export async function generateArray( typeB, diff ){
 
 async function getSizeRowColumn(difficulty){
     if(difficulty == 'E')//Easy
-        return 11;
+        return 7;
     if(difficulty == 'N')//Normal
-        return 15;
+        return 9;
     if(difficulty == 'H')//Hard
-        return 21;
+        return 15;
     if(difficulty == 'I')//Impossible
-        return 25;
+        return 17;
 }
