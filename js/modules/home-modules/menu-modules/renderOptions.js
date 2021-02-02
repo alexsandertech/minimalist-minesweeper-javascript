@@ -143,6 +143,7 @@ function renderSelectedBoard(){
     else if(document.getElementsByName('optBoardShape')[0].checked == true || typeBoard=='T')
         document.querySelector(".selectedTypeBoard").style.backgroundImage = "url(./../../../imgs/"+theme+"/cellTriangle.png)";
     
+    document.querySelector(".selectedTypeBoard").style.backgroundSize = "110px";
     //Update option board selected
     renderBtnSelectedBoardShape();
 }
@@ -184,10 +185,9 @@ function renderBtnSelectedBoardShape(){
 function insertBtnOptionBoardShape(local, theme, typeBoard){
     
     //let oldHTML = document.getElementById("label"+local).innerHTML;
-    //document.querySelector("#label"+local).innerHTML = "<img src=\"http://placehold.it/350x350\" width=\"40px\">" + oldHTML;
 
     document.querySelector("#label"+local).style.backgroundImage = "url(./../../../imgs/"+theme+"/cell"+local+".png)";    
-    document.querySelector("#label"+local).style.backgroundPosition = "50% 15%";
+    document.querySelector("#label"+local).style.backgroundPosition = "50% 29%";
     document.querySelector("#label"+local).style.backgroundRepeat = "no-repeat";
     document.querySelector("#label"+local).style.backgroundSize = "40px";
     
@@ -200,14 +200,17 @@ function insertBtnOptionBoardShape(local, theme, typeBoard){
     document.querySelector("#label"+local).style.flexDirection = "column";
     document.querySelector("#label"+local).style.alignItems = "center";
     document.querySelector("#label"+local).style.justifyContent = "flex-end";
-    document.querySelector("#label"+local).style.width = "90px";
-    document.querySelector("#label"+local).style.height = "70px";
+    document.querySelector("#label"+local).style.width = "100px";
+    document.querySelector("#label"+local).style.height = "68px";
     document.querySelector("#label"+local).style.padding = "3px";
 
     document.querySelector("#label"+local).style.boderRadius = "";
     document.querySelector("#label"+local).style.boxShadow = "";
 
     if(typeBoard == local){
+        document.querySelector("#label"+local).style.backgroundImage = "url(./../../../imgs/"+theme+"/cell"+local+"Check.png)";    
+        document.querySelector("#label"+local).style.backgroundPosition = "95% 0%";
+        document.querySelector("#label"+local).style.backgroundSize = "68px";
         document.querySelector("#label"+local).style.borderRadius = "5px";
         document.querySelector("#label"+local).style.boxShadow = "1px 1px 10px var(--shadow-box-color-btn)";
     }

@@ -4,7 +4,6 @@ export async function mainGameLoop(board, options){
         console.log("> Initializing MainGameLoop");
         let result = false;
         
-        console.log("AAAAAAAAAAA")
         console.log(board);
         await renderMain(board, options);
         /*

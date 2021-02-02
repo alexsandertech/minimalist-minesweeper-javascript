@@ -1,7 +1,8 @@
 export async function generateNumbers(board, typeBoard){
     console.log(" >> Generating Numbers");
     if(typeBoard == 'T')
-        board = await generateNumTriangle(board);
+        board = await generateNumSquare(board);
+        //board = await generateNumTriangle(board);
     if(typeBoard == 'S')
         board = await generateNumSquare(board);
     if(typeBoard == 'H')

@@ -76,6 +76,14 @@ main{
     filter: saturate(4);
 }
 
+.btn-restart:hover{
+    filter: saturate(10);
+}
+
+.btn-back:hover{
+    filter: saturate(5);
+}
+
 input{
     display: none;
 }
