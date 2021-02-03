@@ -103,12 +103,5 @@ async function renderInformations(theme){
 
     document.querySelector(".informations").style.backgroundSize = "700px";
     document.querySelector(".informations").style.backgroundRepeat = "no-repeat";
-    //renderConstrols();
-    //renderObjectives();
+
 }
-/*
-function renderControls(){
-    renderinfoClickLeft();
-    renderinfoClickRight();
-}
-*/

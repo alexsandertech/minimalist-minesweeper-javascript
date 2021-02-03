@@ -1,11 +1,11 @@
-import { removeListenerElement } from './main-loop-modules/listenerButtons.js';
+import { removeListenerElement }    from './main-loop-modules/listenerButtons.js';
+import { windowEndGame }            from './final-modules/windowEndGame.js'
 
 export async function final(result){
 
     removeListenerElement(".btn-back");
     removeListenerElement(".btn-restart");
-    //".cell-"+i+"-"+j
-    document.querySelector("#game").innerHTML = "";
+    //".cell-"+i+"-"+j-> not reseted
 
     if(result[1]=="btnRestart")
         return windowRestart();
@@ -19,20 +19,24 @@ export async function final(result){
 }
 
 function windowRestart(){
+    document.querySelector("#game").innerHTML = "";
     return {returMenu: false, resetCurrentBoard: false};
 }
 
 function windowBackMenu(){
+    document.querySelector("#game").innerHTML = "";
     return {returMenu: false, resetCurrentBoard: true};
 }
 
-function windowEndDefeat(){    
+async function windowEndDefeat(){
+    await windowEndGame(null); 
+    document.querySelector("#game").innerHTML = "";
     return {returMenu: false, resetCurrentBoard: true};
 }
 
-function windowEndVictory(time){
-    alert("Seu tempo: " + time);
-
+async function windowEndVictory(time){
+    await windowEndGame(time);    
+    document.querySelector("#game").innerHTML = "";
     return {returMenu: false, resetCurrentBoard: true};
 
 }

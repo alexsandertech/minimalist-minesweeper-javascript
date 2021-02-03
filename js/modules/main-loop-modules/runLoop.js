@@ -205,10 +205,7 @@ function neighbors(i, j, typeBoard, limI, limJ){
 }
 
 function verifVictory() {
-    contCellReveal++;
-    console.log(contCellReveal);
-    console.log(boardCopy.totalValidCells+1);
-    
+    contCellReveal++;    
     if(contCellReveal==getTotalValidCells())
         setVictory();
 }

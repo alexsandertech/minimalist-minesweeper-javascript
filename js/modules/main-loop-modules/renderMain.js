@@ -38,7 +38,7 @@ export function renderTime(num){
     document.querySelector(".divTime").innerHTML = getStrTime(num);     
 }
 
-function getStrTime(num){
+export function getStrTime(num){
     let strTime = [0, 0, 0];
     strTime[0] = ("00" + (num%60)).slice(-2);//01, 02
     strTime[1] = ("00" + (Math.trunc(num/60))).slice(-2);

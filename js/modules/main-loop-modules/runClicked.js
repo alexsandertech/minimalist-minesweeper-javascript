@@ -21,7 +21,7 @@ export async function runClicked(e) {
                 await cellClicked(str);
         }
     }
-}   
+}
 
 function validateCell(str){
     const regCompare = /cell-/;

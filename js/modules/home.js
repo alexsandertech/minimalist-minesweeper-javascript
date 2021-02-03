@@ -2,16 +2,21 @@ import { renderHome }      from './home-modules/renderHome.js';
 import { listenerButtons } from './home-modules/listenerButtons.js';
 import { renderItemsMenu } from './home-modules/renderItemsMenu.js';
 
-export async function home(){
+export async function home(options){
     console.log("> Initializing Home");
+    
 
-    let options = {
-        typeBoard  : "H",   // H: Hexagon   | T: Triagle     | S: Square 
-        difficulty : "E",   // E: Easy Mode | N: Normal Mode | H: Hard Mode | I:Impossible Mode
-        theme      : "DARK",//LIGHT
-        start      : false
-    };//Initializing default options;    
-        
+    if(options==null) {//Case not inicialized
+        options = {
+            typeBoard  : "H",   // H: Hexagon   | T: Triagle     | S: Square 
+            difficulty : "E",   // E: Easy Mode | N: Normal Mode | H: Hard Mode | I:Impossible Mode
+            theme      : "DARK",//LIGHT
+            start      : false
+        };//Initializing default options;    
+    } else {
+        options.start = false;
+    }
+
     renderHome();
     do {
         listenerButtons();

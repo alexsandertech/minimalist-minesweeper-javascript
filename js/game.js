@@ -8,10 +8,10 @@ async function main(){
     let options, board, result;
     let flag = {returMenu: false, resetCurrentBoard: false};
 
-    options = {};
+    options = null;
     do {
 
-        options = await home();
+        options = await home(options);
         do {
             result  = [false, null, null];
             board   = {};
