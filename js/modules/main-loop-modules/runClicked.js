@@ -2,7 +2,7 @@ document.onmousedown = runClicked;
 import { setBack }      from './runLoop.js';
 import { setRestart }   from './runLoop.js';
 import { revealCell }   from './runLoop.js';
-import { flagCell }   from './runLoop.js';
+import { flagCell }     from './runLoop.js';
 
 export async function runClicked(e) {
     let str = this.className;

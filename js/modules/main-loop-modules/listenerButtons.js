@@ -13,3 +13,8 @@ export function listenerElement(item) {
     document.querySelector(item).addEventListener("click", runClicked);
     document.querySelector(item).addEventListener("contextmenu", runClicked);
 }
+
+export function removeListenerElement(item){
+    document.querySelector(item).removeEventListener("click", runClicked);
+    document.querySelector(item).removeEventListener("contextmenu", runClicked);
+}

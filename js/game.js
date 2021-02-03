@@ -6,19 +6,23 @@ import { final }           from './modules/final.js';
 async function main(){
     console.log("Initializing");
     let options, board, result;
-    let flag = true;
+    let flag = {returMenu: false, resetCurrentBoard: false};
 
-    do{
-        options = {};
-        board   = {};
-        result  = {};
+    options = {};
+    do {
 
         options = await home();
-        board   = await inicializeBoard(options.typeBoard, options.difficulty);
-        result  = await mainGameLoop(board, options);
+        do {
+            result  = [false, null, null];
+            board   = {};
 
-        flag = await final(result);
-    }while(flag);
+            board   = await inicializeBoard(options.typeBoard, options.difficulty);
+            result  = await mainGameLoop(board, options);
+
+            flag = await final(result);
+        } while(!flag.resetCurrentBoard);
+
+    } while (!flag.returMenu);
     console.log("Finalizing");
 }
 

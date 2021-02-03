@@ -12,11 +12,12 @@ var boardCopy       = {};
 
 export async function runLoop(board){
     console.log(" >> Initializing runLoop");
+    resetAllGlobalVariables();
 
     var t = setInterval(renderIncTimer, 1000);
-    let result    = [false, null];
+    let result    = [false, null, null];
         boardCopy = board;
-
+    
     do {
         await sleep(500);
         result = actionRun(board);
@@ -27,6 +28,16 @@ export async function runLoop(board){
     
     console.log(" >> Finalizing runLoop");
     return result;
+}
+
+function resetAllGlobalVariables(){
+    time = 0;
+    statusBack      = false;
+    statusRestart   = false;
+    statusVictory   = false;
+    statusDefeat    = false;
+    contCellReveal  = 0;
+    boardCopy       = {};    
 }
 
 function renderIncTimer(){
