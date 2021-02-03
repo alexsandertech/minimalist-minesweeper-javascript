@@ -1,4 +1,4 @@
 export async function final(result){
-    console.log("AAAAAAAAAAAAAAAAAAA");
+    console.log("Result:");
     console.log(result);
 }
