@@ -4,6 +4,7 @@ import { mainGameLoop }    from './modules/mainGameLoop.js';
 import { final }           from './modules/final.js';
 
 async function main(){
+    calcWindow();
     console.log("Initializing");
     let options, board, result;
     let flag = {returMenu: false, resetCurrentBoard: false};
@@ -29,5 +30,11 @@ async function main(){
 //Disable right-click
 document.oncontextmenu = RightMouseDown;
 function RightMouseDown() { return false;}
+
+function calcWindow(){
+    let windowWidth = window.innerWidth;
+    let calcZoom = (windowWidth/1466).toFixed(2);
+    document.querySelector("body").style.transform = "scale("+calcZoom+")";
+}
 
 main();
