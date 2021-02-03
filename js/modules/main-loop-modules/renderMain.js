@@ -136,6 +136,8 @@ export function setStyleFillCell(i, j, theme, c, strLocal) {
         document.querySelector(".cell-"+i+"-"+j).style.backgroundImage = "url(/imgs/"+theme+"/"+strLocal+"Bomb.png)";
     else if(c=='0')
         document.querySelector(".cell-"+i+"-"+j).style.backgroundImage = "url(/imgs/"+theme+"/"+strLocal+"Void.png)";
+    else if(c=='F')
+        document.querySelector(".cell-"+i+"-"+j).style.backgroundImage = "url(/imgs/"+theme+"/"+strLocal+"Flag.png)";
     else if(c=='1' || c=='2' || c=='3' || c=='4' || c=='5' || c=='6' || c=='7' || c=='8')
         createCellNumber(c, i, j, "url(/imgs/"+theme+"/"+strLocal+"Void.png)")
 }

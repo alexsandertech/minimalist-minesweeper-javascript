@@ -1,14 +1,14 @@
 import { home }            from './modules/home.js';
 import { inicializeBoard } from './modules/structure.js';
 import { mainGameLoop }    from './modules/mainGameLoop.js';
-//import { final }           from './modules/final.js';
+import { final }           from './modules/final.js';
 
 async function main(){
     console.log("Initializing");
     let options, board, result;
     let flag = true;
 
-   // do{
+    do{
         options = {};
         board   = {};
         result  = {};
@@ -17,8 +17,8 @@ async function main(){
         board   = await inicializeBoard(options.typeBoard, options.difficulty);
         result  = await mainGameLoop(board, options);
 
-        //flag = await final(result);
-    //}while(flag);
+        flag = await final(result);
+    }while(flag);
     console.log("Finalizing");
 }
 

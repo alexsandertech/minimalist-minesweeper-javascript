@@ -7,12 +7,13 @@ var statusBack      = false;
 var statusRestart   = false;
 var statusVictory   = false;
 var statusDefeat    = false;
+var contCellReveal  = 0;
 var boardCopy       = {};
 
 export async function runLoop(board){
     console.log(" >> Initializing runLoop");
 
-    setInterval(renderIncTimer, 1000);
+    var t = setInterval(renderIncTimer, 1000);
     let result    = [false, null];
         boardCopy = board;
 
@@ -20,8 +21,9 @@ export async function runLoop(board){
         await sleep(500);
         result = actionRun(board);
     } while(!result[0]);
-
+    
     result[2] = time;
+    clearInterval(t);
     
     console.log(result);
     console.log(" >> Finalizing runLoop");
@@ -84,6 +86,21 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+export async function flagCell(i, j){
+    let theme = window.getComputedStyle(document.body).getPropertyValue('--bg-box-color')=='#212325'? "DARK" : "LIGHT";
+    let typeB = getTypeBoardStr(boardCopy.typeBoard, i, j, boardCopy.row, boardCopy.column);
+   
+    if(boardCopy.view[i][j]=='*'){
+        boardCopy.view[i][j] = 'F';
+        
+        setStyleFillCell(i, j, theme, boardCopy.view[i][j], "cell" + typeB);
+    } else if(boardCopy.view[i][j]=='F'){
+        boardCopy.view[i][j] = '*';
+
+        setStyleFillCell(i, j, theme, boardCopy.view[i][j], "cell" + typeB);
+    }
+}
+
 export async function revealCell(i, j){
     let theme = window.getComputedStyle(document.body).getPropertyValue('--bg-box-color')=='#212325'? "DARK" : "LIGHT";
     let typeB = getTypeBoardStr(boardCopy.typeBoard, i, j, boardCopy.row, boardCopy.column);
@@ -91,10 +108,16 @@ export async function revealCell(i, j){
     if(boardCopy.view[i][j]=='*'){
         boardCopy.view[i][j] = boardCopy.structure[i][j];
 
+        if(boardCopy.view[i][j]=='B')
+            setDefeat();
+        else 
+            verifVictory();
+        
         setStyleFillCell(i, j, theme, boardCopy.view[i][j], "cell" + typeB);
 
         if(validCellVoid(boardCopy.view[i][j]))
             neighbors(i, j, boardCopy.typeBoard, boardCopy.row, boardCopy.column);
+
     }
 }
 
@@ -140,34 +163,49 @@ function neighbors(i, j, typeBoard, limI, limJ){
             revealCell(i+1, j);
         if(allowIncrement(i+1, j+1, limI, limJ, boardCopy.view))
             revealCell(i+1, j+1);
+    } else if(typeBoard=="H"){
+        let middle = Math.trunc((boardCopy.view).length/2);
+        if(i <= middle) {
+            if(allowIncrement(i-1, j-1, limI, limJ, boardCopy.view))
+                revealCell(i-1, j-1);
+        } else {
+            if(allowIncrement(i-1, j+1, limI, limJ, boardCopy.view))
+                revealCell(i-1, j+1);
+        }
+
+        if(allowIncrement(i-1, j, limI, limJ, boardCopy.view))
+            revealCell(i-1, j);
+
+        if(allowIncrement(i, j-1, limI, limJ, boardCopy.view))
+            revealCell(i, j-1);
+        if(allowIncrement(i, j+1, limI, limJ, boardCopy.view))
+            revealCell(i, j+1);
+            
+        if(allowIncrement(i+1, j, limI, limJ, boardCopy.view))
+            revealCell(i+1, j);
+        
+        if(i >= middle){
+            if(allowIncrement(i+1, j-1, limI, limJ, boardCopy.view))
+                revealCell(i+1, j-1);
+        } else {
+            if(allowIncrement(i+1, j+1, limI, limJ, boardCopy.view))
+                revealCell(i+1, j+1);
+        }
     }
-    //allowIncrement(i, j, limI, limJ, board)
 }
 
-/*
-function getNeighbor(i, j, typeBoard, limI, limJ){
-    let coord =[[]];
-    let cont = -1;
-    if(typeBoard=='S' || typeBoard=='T'){        
-        if(allowIncrement(i-1, j-1, limI, limJ, boardCopy.view))
-            coord[++cont] = [i-1, j-1];
-        if(allowIncrement(i-1, j, limI, limJ, boardCopy.view))
-            coord[++cont] = [i-1, j];
-        if(allowIncrement(i-1, j+1, limI, limJ, boardCopy.view))
-            coord[++cont] = [i-1, j+1];
-        
-        if(allowIncrement(i, j-1, limI, limJ, boardCopy.view))
-            coord[++cont] = [i, j-1];
-        if(allowIncrement(i, j+1, limI, limJ, boardCopy.view))
-            coord[++cont] = [i, j+1];
-        
-        if(allowIncrement(i+1, j-1, limI, limJ, boardCopy.view))
-            coord[++cont] = [i+1, j-1];
-        if(allowIncrement(i+1, j, limI, limJ, boardCopy.view))
-            coord[++cont] = [i+1, j];
-        if(allowIncrement(i+1, j+1, limI, limJ, boardCopy.view))
-            coord[++cont] = [i+1, j+1];
-    }
-    return coord;
-    //allowIncrement(i, j, limI, limJ, board)
-}*/
+function verifVictory() {
+    contCellReveal++;
+    console.log(contCellReveal);
+    console.log(boardCopy.totalValidCells+1);
+    
+    if(contCellReveal==getTotalValidCells())
+        setVictory();
+}
+
+function getTotalValidCells(){
+    if(boardCopy.typeBoard=='T' || boardCopy.typeBoard=='S')
+        return (boardCopy.totalValidCells-boardCopy.totalBombs)
+    else
+        return boardCopy.totalValidCells+1;
+}

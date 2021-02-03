@@ -4,7 +4,7 @@ import { runLoop }         from './main-loop-modules/runLoop.js';
 
 export async function mainGameLoop(board, options){
         console.log("> Initializing MainGameLoop");
-        
+
         let result = [false, 0];
         await renderMain(board, options, 0);
         
