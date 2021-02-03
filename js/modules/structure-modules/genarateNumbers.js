@@ -108,7 +108,7 @@ async function generateNumHexagon(board){
     return board;
 }
 
-function allowIncrement(i, j, limI, limJ, board){
+export function allowIncrement(i, j, limI, limJ, board){
     if(i == -1 || j == -1 || i >= limI || j >= limJ)
         return false;
     else if(board[i][j] == null || board[i][j] == 'B')

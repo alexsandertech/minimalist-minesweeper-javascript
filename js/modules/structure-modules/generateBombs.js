@@ -9,13 +9,13 @@ export async function generateBombs( board ){
 
 async function getTotalBombs(totalValidCells, difficulty){
     if(difficulty == 'E')//Easy
-        return Math.trunc(totalValidCells*0.15);
+        return Math.trunc(totalValidCells*0.10);
     if(difficulty == 'N')//Normal
-        return Math.trunc(totalValidCells*0.2);
+        return Math.trunc(totalValidCells*0.15);
     if(difficulty == 'H')//Hard
-        return Math.trunc(totalValidCells*0.4);
+        return Math.trunc(totalValidCells*0.2);
     if(difficulty == 'I')//Impossible
-        return Math.trunc(totalValidCells*0.4);
+        return Math.trunc(totalValidCells*0.3);
 }
 
 async function setBombs(board, totalBombs, column, row){

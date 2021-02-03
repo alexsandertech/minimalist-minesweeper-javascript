@@ -3,17 +3,27 @@ import { alignmentFlex }  from '../../components/generic-components/alignmentEle
 import { createHTML }  from '../../components/createHTML.js';
 import { createSTYLE } from '../../components/createSTYLE.js';
 
-export async function renderMain(board, options){
-    renderTime(0);
-    await renderBox();
-    await renderCells(board.column, board.row, board.structure, options.theme, board.typeBoard);
-    renderButtons();
+import { listenerElement }  from './listenerButtons.js';
+
+export async function renderMain(board, options, num){
+    console.log(" >> Initializing renderMain()");
+    await createTime();
+          renderTime(num);
+
+    await createBox();
+          renderBox();
+
+    await createCells(board.column, board.row, board.view);
+          renderCells(board.column, board.row, board.view, options.theme, board.typeBoard);
+          
+    await createButtons();
+          renderButtons();
+    
+    console.log(" >> Finalizing renderMain()");
 }
 
-function renderTime(num){
-    let strTime = getStrTime(num);
-    
-    createHTML( "DIV", "beforeEnd", "#game", "divTime", strTime);
+async function createTime(){
+    createHTML( "DIV", "beforeEnd", "#game", "divTime", "-");
     document.querySelector(".divTime").style.width = "545px";    
     document.querySelector(".divTime").style.fontFamily = "Avenir";
     document.querySelector(".divTime").style.fontSize = "22px";
@@ -24,11 +34,15 @@ function renderTime(num){
     alignmentFlex("#game", "flex", "column", "center", "center");
 }
 
+export function renderTime(num){    
+    document.querySelector(".divTime").innerHTML = getStrTime(num);     
+}
+
 function getStrTime(num){
     let strTime = [0, 0, 0];
-    strTime[0] = num%60;
-    strTime[1] = Math.trunc(num/60);
-    strTime[2] = Math.trunc(strTime[1]/60);
+    strTime[0] = ("00" + (num%60)).slice(-2);//01, 02
+    strTime[1] = ("00" + (Math.trunc(num/60))).slice(-2);
+    strTime[2] = ("00" + (Math.trunc(strTime[1]/60))).slice(-2);
 
     if(strTime[2]==0)
         if(strTime[1]==0)
@@ -41,47 +55,57 @@ function getStrTime(num){
     }
 }
 
-async function renderBox(){
+async function createBox(){
     createHTML( "DIV", "beforeEnd", "#game", "baseBoxMain", "" );
+}
+
+function renderBox(){
     createSTYLE("BOX", "baseBoxMain", 520, 550, 1, 10, "var(--bg-box-main)", "var(--line-box-color)");
     alignmentFlex(".baseBoxMain", "flex", "column", "center", "center");
 }
 
-async function renderCells(column, row, view, theme, typeBoard){
+async function createCells(column, row, view){
     for(let i=0; i<row; i++){
         createLineVoid(i);        
         for(let j=0; j<column; j++){
             if(view[i][j]!=null) {
                 createVoidCell(i, j);
-                
+                applyStyleDefaultCell(i, j);
+            }
+        }
+    }
+}
+
+export async function renderCells(column, row, view, theme, typeBoard){
+    for(let i=0; i<row; i++){ 
+        for(let j=0; j<column; j++){
+            if(view[i][j]!=null) {                
                 if(typeBoard=='S') {
-                    createFillCell(i, j, theme, view[i][j], "cellSquare");
+                    setStyleFillCell(i, j, theme, view[i][j], "cellSquare");
                     //createCellSquare(i, j, theme, view[i][j]);
                 } else if(typeBoard=='H') {
-                    createFillCell(i, j, theme, view[i][j], "cellHexagon");
+                    setStyleFillCell(i, j, theme, view[i][j], "cellHexagon");
                 } else if(typeBoard=='T') {
                     if((row + column)%2==1){
                         if((j+i)%2==1) {
-                            createFillCell(i, j, theme, view[i][j], "cellTriangle");
+                            setStyleFillCell(i, j, theme, view[i][j], "cellTriangle");
                             document.querySelector(".cell-"+i+"-"+j).style.paddingTop = "5px";
                         } else { 
-                            createFillCell(i, j, theme, view[i][j], "cellTriangleI");
+                            setStyleFillCell(i, j, theme, view[i][j], "cellTriangleI");
                             document.querySelector(".cell-"+i+"-"+j).style.paddingBottom = "5px";
                         }
                     } else {
                         if((j+i)%2==1) {
-                            createFillCell(i, j, theme, view[i][j], "cellTriangleI");
+                            setStyleFillCell(i, j, theme, view[i][j], "cellTriangleI");
                             document.querySelector(".cell-"+i+"-"+j).style.paddingBottom = "5px";
                         } else {
-                            createFillCell(i, j, theme, view[i][j], "cellTriangle");
+                            setStyleFillCell(i, j, theme, view[i][j], "cellTriangle");
                             document.querySelector(".cell-"+i+"-"+j).style.paddingTop = "5px";
                         }
                     }
                     document.querySelector(".lineCell-"+i).style.marginTop = "10px";//Custom spacing for triangular board
                     //createCellTriangle(i, j, theme, row, column, view[i][j]);
                 }
-                
-                applyStyleDefaultCell(i, j);
             }            
         }
     }
@@ -98,11 +122,14 @@ function createVoidCell(i, j){
     createHTML( "DIV", "beforeEnd", ".lineCell-"+i, "cell-"+i+"-"+j, "" );
     createSTYLE("BOX", "cell-"+i+"-"+j, 32, 32, 1, 1, "", "");
 
+    listenerElement(".cell-"+i+"-"+j);
+
     document.querySelector(".cell-"+i+"-"+j).style.boxShadow = "none";
     document.querySelector(".cell-"+i+"-"+j).style.border = "none";
+    document.querySelector(".cell-"+i+"-"+j).style.cursor = "pointer";
 }
 
-function createFillCell(i, j, theme, c, strLocal) {
+export function setStyleFillCell(i, j, theme, c, strLocal) {
     if(c=='*')
         document.querySelector(".cell-"+i+"-"+j).style.backgroundImage = "url(/imgs/"+theme+"/"+strLocal+".png)";
     else if(c=='B')
@@ -116,8 +143,6 @@ function createFillCell(i, j, theme, c, strLocal) {
 function createCellNumber(num, i, j, strLocal){
     document.querySelector(".cell-"+i+"-"+j).style.backgroundImage = strLocal;
     document.querySelector(".cell-"+i+"-"+j).innerHTML += num;
-    //document.querySelector(".cell-"+i+"-"+j).style
-
 }
 
 function applyStyleDefaultCell(i, j){    
@@ -132,13 +157,15 @@ function applyStyleDefaultCell(i, j){
     document.querySelector(".cell-"+i+"-"+j).style.alignItems = "center";
 }
 
-function renderButtons(){
+async function createButtons(){
     createHTML( "DIV", "beforeEnd", "#game", "divBtns", "" );
     alignmentFlex(".divBtns", "flex", "row", "center", "center");
     
     createHTML( "DIV", "beforeEnd", ".divBtns", "btn-restart", "restart" );
-    createSTYLE("BTN", "btn-restart", 15, 3, 30, 90);
-
     createHTML( "DIV", "beforeEnd", ".divBtns", "btn-back", "back" );
+}
+
+function renderButtons(){
+    createSTYLE("BTN", "btn-restart", 15, 3, 30, 90);
     createSTYLE("BTN", "btn-back", 15, 2, 30, 90);
 }
