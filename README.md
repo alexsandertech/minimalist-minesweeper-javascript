@@ -98,11 +98,17 @@ alignmentFlex(element, displaySelected, orientation, jConten, aItems){}
     * Argumento *className*: nome da classe do elemento deseja estilizar, não é necessário identificador de classe ou id, por padrão só se estiliza classes.
     * Argumento *...attributes*: Spread com elementos com caracteristicas a serem estilizadas, cada tipo tem seus próprios argumentos para estilizar. Veja a sequencia que deve passar para cada um por meio do createSTYLE:
      2.1 "TITLE": (type, classNameTitle, sizeText, spaceLetter);
+
      2.2 "LINE": (type, classNameLine, sizeLine);
+
      2.3 "CREDITS": (type, classNameCredits, sizeTexti, spaceLetter, textAlignSet);
+
      2.4 "BTN": (type, classNameBtn, sizeFont, typeBtn, height, width);
+
      2.5 "BOX": (type, classNameBox, height, width, borderWeight, borderRadius, colorBackground, colorBorder);
+
      2.6 "MODAL": (type, classNameModal);
+
 3. alignmentFlex:
     Segue os principios de alinhamento utilizando flexbox
     * Argumento *element*: classe ou id do elemento que deseja selecionar;
@@ -125,8 +131,8 @@ createHTML( "DIV", "beforeEnd", ".instruction", "instructionBox", "" );
 createSTYLE("BOX", "instructionBox", 430, 800, 1, 7, "var(--bg-box-color)", "var(--line-box-color)");
 document.querySelector(".instructionBox").style.animation = "animationArise 1s";
 ```
-
+<!--
 # Minimalist Minesweeper in Javascript
 ## EN:
-Minesweeper with minimalist design in pure javascript, with different boards: triangular, square and hexagonal.
+Minesweeper with minimalist design in pure javascript, with different boards: triangular, square and hexagonal.-->
 
