@@ -2,7 +2,7 @@ import { generateViewBoard } from './generateViewBoard.js';
 
 export async function arrayHexagon( size ){
     let board = {};
-
+    console.log(size);
     board.structure = await generateEmptyBoard(size);
     board.view      = await generateViewBoard(board.structure);
     board.totalValidCells = await calcValidCells(size);
@@ -57,7 +57,7 @@ async function calcValidCells(size){
     let acc = 0;
     
     for(let i = 0; i < middleRow; i++)
-        acc = acc + totalCellsFilledInRow + 1;
+        acc = acc + totalCellsFilledInRow + i;
 
     acc*=2;
 

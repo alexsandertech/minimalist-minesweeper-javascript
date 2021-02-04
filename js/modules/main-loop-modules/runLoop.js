@@ -211,8 +211,5 @@ function verifVictory() {
 }
 
 function getTotalValidCells(){
-    if(boardCopy.typeBoard=='T' || boardCopy.typeBoard=='S')
-        return (boardCopy.totalValidCells-boardCopy.totalBombs)
-    else
-        return boardCopy.totalValidCells+1;
+    return (boardCopy.totalValidCells-boardCopy.totalBombs);
 }

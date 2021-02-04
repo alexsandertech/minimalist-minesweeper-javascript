@@ -19,7 +19,7 @@ export async function renderMain(board, options, num){
     await createButtons();
           renderButtons();
     
-    console.log(" >> Finalizing renderMain()");
+    console.log(" << Finalizing renderMain()");
 }
 
 async function createTime(){
