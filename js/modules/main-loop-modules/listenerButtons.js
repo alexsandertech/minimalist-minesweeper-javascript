@@ -6,7 +6,7 @@ export function listenerButtons() {
     listenerElement(".btn-back");
     listenerElement(".btn-restart");
 
-    console.log(" >> Finalizing listenerButtons");
+    console.log(" << Finalizing listenerButtons");
 }
 
 export function listenerElement(item) {

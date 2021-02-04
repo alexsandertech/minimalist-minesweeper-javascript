@@ -26,7 +26,7 @@ export async function runLoop(board){
     result[2] = time;
     clearInterval(t);
     
-    console.log(" >> Finalizing runLoop");
+    console.log(" << Finalizing runLoop");
     return result;
 }
 
