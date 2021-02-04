@@ -19,10 +19,13 @@ fica á seu critério e responsabilidade, este tópico é como aviso, não infor
 
 Em uma abordagem top-down se pode abstrair os diretórios e arquivos de códigos na seguinte forma:
 
-            📦js
+           📦js
             ┣ 📂components
-            ┃ ┣ 📂generic-components
+            ┃ ┣ 📂html-components
             ┃ ┃ ┗ ...
+            ┃ ┣ 📂style-components
+            ┃ ┃ ┗ ...
+            ┃ ┣ 📜alignmentElement.js
             ┃ ┣ 📜createHTML.js
             ┃ ┗ 📜createSTYLE.js
             ┣ 📂modules
@@ -39,6 +42,7 @@ Em uma abordagem top-down se pode abstrair os diretórios e arquivos de códigos
             ┃ ┣ 📜mainGameLoop.js
             ┃ ┗ 📜structure.js
             ┗ 📜game.js
+
 #### import { **GAME** } from 'js/game.js'
 
 A função **game()** engloba todo jogo, mantendo-o em loop, responsável por invocar as principais funções do jogo, sendo elas:
@@ -66,17 +70,20 @@ A função **game()** engloba todo jogo, mantendo-o em loop, responsável por in
 
 Utilizando a ideia de componentização, esta pasta contém arquivos responsáveis por implementar componentes utilizados e reutilizados dinâmicamente por outras funções.
 
-            📂components
-            ┣ 📂generic-components
-            ┃ ┣ 📜alignmentElement.js
-            ┃ ┣ 📜boxTemplate.js
-            ┃ ┣ 📜buttonTemplate.js
-            ┃ ┣ 📜createDivHTML.js
-            ┃ ┣ 📜createRadioHTML.js
-            ┃ ┣ 📜modalTemplate.js
-            ┃ ┗ 📜titleTemplate.js
-            ┣ 📜createHTML.js
-            ┗ 📜createSTYLE.js
+        📦components
+         ┣ 📂html-components
+         ┃ ┣ 📜createDivHTML.js
+         ┃ ┗ 📜createRadioHTML.js
+         ┣ 📂style-components
+         ┃ ┣ 📜boxTemplate.js
+         ┃ ┣ 📜buttonTemplate.js
+         ┃ ┣ 📜creditsTemplate.js
+         ┃ ┣ 📜lineTemplate.js
+         ┃ ┣ 📜modalTemplate.js
+         ┃ ┗ 📜titleTemplate.js
+         ┣ 📜alignmentElement.js
+         ┣ 📜createHTML.js
+         ┗ 📜createSTYLE.js
 
 A ideia básica seria que sempre que necessitasse de algum componente, utilizar a função para criar uma estrutura HTML e na sequência aplicar estilização padrão, e caso necessitasse utilizar *stylesheet* para definir caracteristicas particulares, e também se desejasse aplicar um alinhamento com Flex Box. 
 

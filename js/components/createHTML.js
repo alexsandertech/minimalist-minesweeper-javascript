@@ -1,5 +1,5 @@
-import { createDivHTML } from "./generic-components/createDivHTML.js";
-import { createRadioHTML } from "./generic-components/createRadioHTML.js";
+import { createDivHTML } from "./html-components/createDivHTML.js";
+import { createRadioHTML } from "./html-components/createRadioHTML.js";
 
 export function createHTML(type, local, fatherDiv, className, texti){
     if(type=="DIV")

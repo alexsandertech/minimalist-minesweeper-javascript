@@ -1,11 +1,9 @@
-import { setTitleSTYLE }   from "./generic-components/titleTemplate.js"
-import { setLineSTYLE }    from "./generic-components/titleTemplate.js"
-import { setCreditsSTYLE } from "./generic-components/titleTemplate.js"
-
-import { setBoxSTYLE }     from "./generic-components/boxTemplate.js"
-import { setButtonSTYLE }  from "./generic-components/buttonTemplate.js"
-
-import { setBlurSTYLE }  from "./generic-components/modalTemplate.js"
+import { setTitleSTYLE }   from "./style-components/titleTemplate.js";
+import { setLineSTYLE }    from "./style-components/lineTemplate.js";
+import { setCreditsSTYLE } from "./style-components/creditsTemplate.js";
+import { setBoxSTYLE }     from "./style-components/boxTemplate.js";
+import { setButtonSTYLE }  from "./style-components/buttonTemplate.js";
+import { setBlurSTYLE }    from "./style-components/modalTemplate.js";
 
 export function createSTYLE(type, className, ...attributes){
     if(type=="TITLE")    
@@ -14,13 +12,10 @@ export function createSTYLE(type, className, ...attributes){
         setLineSTYLE(className, attributes[0]);
     if(type=="CREDITS")
         setCreditsSTYLE(className, attributes[0], attributes[1], attributes[2]);
-
     if(type=="BOX")
         setBoxSTYLE(className, attributes[0], attributes[1], attributes[2], attributes[3], attributes[4], attributes[5]);
-
     if(type=="BTN")
         setButtonSTYLE(className, attributes[0], attributes[1], attributes[2], attributes[3]);
-
     if(type=="MODAL")
         setBlurSTYLE(className);
 

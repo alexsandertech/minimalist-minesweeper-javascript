@@ -1,6 +1,6 @@
-import { arrayTriangle } from "./arrayTriangle.js";
-import { arraySquare }   from "./arraySquare.js";
-import { arrayHexagon }  from "./arrayHexagon.js";
+import { arrayTriangle } from "./generate-array-modules/arrayTriangle.js";
+import { arraySquare }   from "./generate-array-modules/arraySquare.js";
+import { arrayHexagon }  from "./generate-array-modules/arrayHexagon.js";
 
 export async function generateArray( typeB, diff ){
     let board = {};

@@ -1,4 +1,4 @@
-import { alignmentFlex }  from '../../components/generic-components/alignmentElement.js';
+import { alignmentFlex }  from '../../components/alignmentElement.js';
 
 import { createHTML }  from '../../components/createHTML.js';
 import { createSTYLE } from '../../components/createSTYLE.js';
