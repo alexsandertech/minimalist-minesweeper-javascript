@@ -78,43 +78,52 @@ Utilizando a ideia de componentização, esta pasta contém arquivos responsáve
             ┣ 📜createHTML.js
             ┗ 📜createSTYLE.js
 
-A ideia básica seria que sempre que necessitasse de algum componente, utilizar a função para criar uma estrutura HTML e na sequência aplicar estilização padrão, e caso necessitasse utilizar *stylesheet* para definir caracteristicas particulares . 
+A ideia básica seria que sempre que necessitasse de algum componente, utilizar a função para criar uma estrutura HTML e na sequência aplicar estilização padrão, e caso necessitasse utilizar *stylesheet* para definir caracteristicas particulares, e também se desejasse aplicar um alinhamento com Flex Box. 
 
-O cabeçalho de declaração das funções createHTML() e createSTYLE()
+O cabeçalho de declaração das funções createHTML(), createSTYLE() e alignmentFlex()
 ```sh
-    createHTML(type, local, father, className, text){}
-    createSTYLE(type, className, ...attributes){}
+createHTML(type, local, father, className, text){}
+createSTYLE(type, className, ...attributes){}
+alignmentFlex(element, displaySelected, orientation, jConten, aItems){}
 ```
 
 1. createHTML:
     * Argumento *type*: neste pode ser dois valores, "DIV" para criar divs html e "RD" para criar radio buttons.
     * Argumento *local*: necessária para definir o local dentro da div pai onde o elemento que esta sendo criado vai ficar. Pode assumir os valores : "beforebegin", "afterbegin", "beforeend" e "afterend". Para mais detalhes consulte a documentação referente ao *insertAdjacentHTML()*.
     * Argumento *father*: classe ou id onde o html criado será inserido, necessário distinguir com identificador de classe ou id, dependendo do elemento que queira acessar.
-    * Argumento *className*: nome do elemento html que se esta criando, por padrão só se cria classes, não é necessário colocar identificar de classe(".nameClass") ao chamar a função.
+    * Argumento *className*: nome do elemento html que se esta criando, por padrão só se cria classes, não é necessário colocar identificador de classe(".nameClass") ao chamar a função.
     * Argumento *text*: qualquer string ou valor que deseja incluir dentro do elemento a ser criado, pode deixar vazio.
 2. createSTYLE:
     * Argumento *type*: pode assumir diversos valores, de acordo com o elemento que deseja estilizar, assim podendo assumir o estilo de: "TITLE", "LINE", "CREDITS", "BOX", "BTN" e "MODAL".
     * Argumento *className*: nome da classe do elemento deseja estilizar, não é necessário identificador de classe ou id, por padrão só se estiliza classes.
     * Argumento *...attributes*: Spread com elementos com caracteristicas a serem estilizadas, cada tipo tem seus próprios argumentos para estilizar. Veja a sequencia que deve passar para cada um por meio do createSTYLE:
-     - "TITLE": type, classNameTitle, sizeText, spaceLetter;
-     - "LINE": type, classNameLine, sizeLine;
-     - "CREDITS": type, classNameCredits, sizeTexti, spaceLetter, textAlignSet;
-     - "BTN": type, classNameBtn, sizeFont, typeBtn, height, width;
-     - "BOX": type, className, height, width, borderWeight, borderRadius, colorBackground, colorBorder;
-     - "MODAL": type, className;
+     2.1 "TITLE": (type, classNameTitle, sizeText, spaceLetter);
+     2.2 "LINE": (type, classNameLine, sizeLine);
+     2.3 "CREDITS": (type, classNameCredits, sizeTexti, spaceLetter, textAlignSet);
+     2.4 "BTN": (type, classNameBtn, sizeFont, typeBtn, height, width);
+     2.5 "BOX": (type, classNameBox, height, width, borderWeight, borderRadius, colorBackground, colorBorder);
+     2.6 "MODAL": (type, classNameModal);
+3. alignmentFlex:
+    Segue os principios de alinhamento utilizando flexbox
+    * Argumento *element*: classe ou id do elemento que deseja selecionar;
+    * Argumento *displaySelected*: assume o papel do tipo de display css, caso queira mudar de "flex" para "none"
+    * Argumento *orientation*: assume o papel do "flex-direction", podendo ser "row" ou "column";
+    * Argumento *jConten*: assume o papel do "justify-content";
+    * Argumento *aItems*: assume o papel do "align-items";
 
-Obs: Tendo em vista o projeto só foram criadas componentes que foram utilizados, apesar de parecer incompleto, o objetivo não é implementar uma biblioteca de componentes, sim recriar o jogo campo- minado com estilo unico, utilizando componentes.
+
+Obs: Tendo em vista o projeto só foram criados componentes que foram utilizados, apesar de parecer incompleto, o objetivo não é implementar uma biblioteca de componentes, sim recriar o jogo campo- minado com estilo unico, utilizando componentes.
 
 Exemplo de código que cria uma janela, com fundo desfocado:
 
 ```sh
-    createHTML( "DIV", "afterend", "#game", "instruction", "" );
-    createSTYLE("MODAL", "instruction");
-    alignmentFlex(".instruction", "flex", "row", "center", "center");
-    
-    createHTML( "DIV", "beforeEnd", ".instruction", "instructionBox", "" );
-    createSTYLE("BOX", "instructionBox", 430, 800, 1, 7, "var(--bg-box-color)", "var(--line-box-color)");
-    document.querySelector(".instructionBox").style.animation = "animationArise 1s";
+createHTML( "DIV", "afterend", "#game", "instruction", "" );
+createSTYLE("MODAL", "instruction");
+alignmentFlex(".instruction", "flex", "row", "center", "center");
+
+createHTML( "DIV", "beforeEnd", ".instruction", "instructionBox", "" );
+createSTYLE("BOX", "instructionBox", 430, 800, 1, 7, "var(--bg-box-color)", "var(--line-box-color)");
+document.querySelector(".instructionBox").style.animation = "animationArise 1s";
 ```
 
 # Minimalist Minesweeper in Javascript
