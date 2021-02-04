@@ -85,13 +85,13 @@ Utilizando a ideia de componentização, esta pasta contém arquivos responsáve
          ┣ 📜createHTML.js
          ┗ 📜createSTYLE.js
 
-A ideia básica seria que sempre que necessitasse de algum componente, utilizar a função para criar uma estrutura HTML e na sequência aplicar estilização padrão, e caso necessitasse utilizar *stylesheet* para definir caracteristicas particulares, e também se desejasse aplicar um alinhamento com Flex Box. 
+A ideia básica seria que sempre que necessitasse de algum componente, utilizar a função para criar uma estrutura HTML e na sequência aplicar estilização padrão, e caso fosse preciso utilizar *stylesheet* para definir caracteristicas particulares, além, também sendo possível aplicar um alinhamento utilizando FlexBox. 
 
-O cabeçalho de declaração das funções createHTML(), createSTYLE() e alignmentFlex()
+O cabeçalho de declaração das funções createHTML(), createSTYLE() e alignmentElement()
 ```sh
 createHTML(type, local, father, className, text){}
 createSTYLE(type, className, ...attributes){}
-alignmentFlex(element, displaySelected, orientation, jConten, aItems){}
+alignmentElement(element, displaySelected, orientation, jConten, aItems){}
 ```
 
 1. createHTML:
@@ -117,7 +117,7 @@ alignmentFlex(element, displaySelected, orientation, jConten, aItems){}
 
         2.6 "MODAL": (type, classNameModal);
 
-3. alignmentFlex:
+3. alignmentElement:
     Segue os principios de alinhamento utilizando flexbox
     * Argumento *element*: classe ou id do elemento que deseja selecionar;
     * Argumento *displaySelected*: assume o papel do tipo de display css, caso queira mudar de "flex" para "none"
