@@ -1,7 +1,7 @@
 # Campo-Minado minimalista em JavaScript
 Campo-Minado com design minimalista implementado em javascript, com diferentes tabuleiros: triangular, quadrado e hexagonal.
 
-![Flow Game](https://github.com/alexsandertech/minimalist-minesweeper-javascript/blob/main/assetsREADME/animateGame.gif)
+![Flow Game](https://github.com/alexsandertech/minimalist-minesweeper-javascript/blob/main/assetsReadme/animateGame.gif)
 
 ### Como executar em seu computador
 Para executar localmente, é necessário configurar um servidor local. 
