@@ -29,8 +29,7 @@ export async function home(options){
 }
 
 export function setColorMode(){
-    /*toggles the theme color when called */
-    
+    /*toggles the theme color when called */    
     if(window.getComputedStyle(document.body).getPropertyValue('--bg-box-color')=='#212325'){
         document.documentElement.style.setProperty('--bg-color', '#F5F8FA');
         document.documentElement.style.setProperty('--bg-box-main', '#FFF');

@@ -1,12 +1,16 @@
 import { createHTML }       from '../../components/createHTML.js';
 import { createSTYLE }      from '../../components/createSTYLE.js';
 import { alignmentFlex }    from '../../components/alignmentElement.js';
+import { sleep }            from "./../general-modules/sleep.js";
 
-import { listenerElement }  from "../home-modules/listenerButtons.js";
-import { getStrTime }       from '../main-loop-modules/renderMain.js'
+import { addListenerClickLEFT }     from "../general-modules/listenerClick.js";
+import { removeListenerClickLEFT }  from "../general-modules/listenerClick.js";
+import { getStrTime }       from '../general-modules/strTime.js'
+
+var backMenu;
 
 export async function windowEndGame(time){
-    let theme = window.getComputedStyle(document.body).getPropertyValue('--bg-box-color')=='#212325'? "DARK" : "LIGHT";
+    backMenu = false;
 
     renderBox();
     renderMsg(time);
@@ -30,8 +34,8 @@ function renderBox(){
     createSTYLE("BOX", "endGameBox", 230, 400, 1, 7, "var(--bg-box-color)", "var(--line-box-color)");
     alignmentFlex(".endGame", "flex", "row", "center", "center");
     alignmentFlex(".endGameBox", "flex", "column", "space-between", "center");
-        document.querySelector(".endGameBox").style.marginTop = "15px";
-        document.querySelector(".endGameBox").style.animation = "animationArise 1s";
+    document.querySelector(".endGameBox").style.marginTop = "15px";
+    document.querySelector(".endGameBox").style.animation = "animationArise 1s";
 }
 
 function renderMsg(time){
@@ -65,41 +69,28 @@ function lose(){
 }
 
 function renderButtonBack(time){
-    createHTML( "DIV", "beforeEnd", ".endGameBox", "backToMenu","menu" );
+    createHTML( "DIV", "beforeEnd", ".endGameBox", "btn-back-EndGame","menu" );
     
     if(time!=null)
-        createSTYLE("BTN", "backToMenu", 17, 1, 35, 100);
+        createSTYLE("BTN", "btn-back-EndGame", 17, 1, 35, 100);
     else
-        createSTYLE("BTN", "backToMenu", 17, 2, 35, 100);
+        createSTYLE("BTN", "btn-back-EndGame", 17, 2, 35, 100);
 
-    document.querySelector(".backToMenu").style.marginBottom = "30px";
-
-    //document.querySelector(".backToMenu").style.margin = "auto";
+    document.querySelector(".btn-back-EndGame").style.marginBottom = "30px";
 }
 
 async function listenerClickBtnBack(){
-    listenerElement(".backToMenu", btnClickedBack);
-    await getClicked();
+    await addListenerClickLEFT('.btn-back-EndGame');
+    await getBackEndGame();
+    removeListenerClickLEFT(".btn-back-EndGame");
 }
 
-function btnClickedBack(){
-    document.querySelector(".backToMenu").classList.add("active");    
+export async function setBackEndGame(){
+    backMenu = true;
 }
 
-export async function getClicked(){
-    let flag = false;
+async function getBackEndGame(){
     do{
         await sleep(500);
-        flag = returnActive();
-    }while(flag==false);
-    
-    return flag;
-}
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function returnActive(){
-    return document.querySelector(".backToMenu").classList.contains("active");
+    }while(!backMenu);
 }

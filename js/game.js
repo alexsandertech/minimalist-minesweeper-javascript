@@ -9,10 +9,11 @@ async function main(){
     let options = null;
     let board   = {};
     let result  = [false, null, null];
-    let flag    = {returMenu: false, resetCurrentBoard: false};
+    let flag    = {returnMenu: false, resetCurrentBoard: false};
 
     do {
         options = await home(options);
+
         do {
             result  = [false, null, null];
             board   = {};
@@ -23,7 +24,7 @@ async function main(){
             flag = await final(result);
         } while(!flag.resetCurrentBoard);
 
-    } while (!flag.returMenu);
+    } while (!flag.returnMenu);
     console.log("Finalizing");
 }
 
@@ -33,7 +34,7 @@ function RightMouseDown() { return false;}
 
 function calcWindow(){
     let windowWidth = window.innerWidth;
-    let calcZoom = (windowWidth/1466).toFixed(2);
+    let calcZoom = (windowWidth/1366).toFixed(2);
     document.querySelector("body").style.transform = "scale("+calcZoom+")";
 }
 

@@ -1,5 +1,6 @@
-import { renderInstructions } from "./menu-modules/renderInstructions.js";
-import { renderOptions }      from "./menu-modules/renderOptions.js";
+import { sleep }              from './../general-modules/sleep.js';
+import { renderInstructions } from './menu-modules/renderInstructions.js';
+import { renderOptions }      from './menu-modules/renderOptions.js';
 
 export async function renderItemsMenu(options) {
     let selectedMenu = await getClicked();
@@ -19,15 +20,11 @@ export async function renderItemsMenu(options) {
 export async function getClicked() {
     let flag = false;
     do{
-        await sleep(500);
+        await sleep(200);
         flag = returnActive();
     }while(flag==true);
     
     return flag;
-}
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function returnActive() {

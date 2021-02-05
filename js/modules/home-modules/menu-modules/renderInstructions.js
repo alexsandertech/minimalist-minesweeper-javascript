@@ -89,8 +89,6 @@ function returnActive(){
     return document.querySelector(".backMenu").classList.contains("active");;
 }
 
-
-
 async function renderInformations(theme){
     createHTML( "DIV", "beforeEnd", ".instructionBox", "informations","" );
     document.querySelector(".informations").style.height = "280px";

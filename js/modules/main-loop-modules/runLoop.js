@@ -1,6 +1,7 @@
-import { renderTime }  from "./renderMain.js";
+import { renderTime }       from "./renderMain.js";
 import { setStyleFillCell } from './renderMain.js';
-import { allowIncrement }    from './../structure-modules/genarateNumbers.js';
+import { allowIncrement }   from './../structure-modules/genarateNumbers.js';
+import { sleep }            from './../general-modules/sleep.js';
 
 var time = 0;
 var statusBack      = false;
@@ -19,7 +20,7 @@ export async function runLoop(board){
         boardCopy = board;
     
     do {
-        await sleep(500);
+        await sleep(250);
         result = actionRun(board);
     } while(!result[0]);
     
@@ -90,10 +91,6 @@ export function setDefeat(){
 
 function getValueDefeat(){
     return statusDefeat;
-}
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 export async function flagCell(i, j){

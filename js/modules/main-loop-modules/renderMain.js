@@ -1,8 +1,7 @@
 import { createHTML }  from '../../components/createHTML.js';
 import { createSTYLE } from '../../components/createSTYLE.js';
 import { alignmentFlex }  from '../../components/alignmentElement.js';
-
-import { listenerElement }  from './listenerButtons.js';
+import { getStrTime }       from '../general-modules/strTime.js';
 
 export async function renderMain(board, options, num){
     console.log(" >> Initializing renderMain()");
@@ -35,23 +34,6 @@ async function createTime(){
 
 export function renderTime(num){    
     document.querySelector(".divTime").innerHTML = getStrTime(num);     
-}
-
-export function getStrTime(num){
-    let strTime = [0, 0, 0];
-    strTime[0] = ("00" + (num%60)).slice(-2);//01, 02
-    strTime[1] = ("00" + (Math.trunc(num/60))).slice(-2);
-    strTime[2] = ("00" + (Math.trunc(strTime[1]/60))).slice(-2);
-
-    if(strTime[2]==0)
-        if(strTime[1]==0)
-            return strTime[0]+"sec";
-        else 
-            return strTime[1]+"min " + strTime[0]+"sec";
-    else {
-        strTime[1] -= strTime[2]*60;
-        return strTime[2]+"h " + strTime[1]+"min " + strTime[0]+"sec";
-    }
 }
 
 async function createBox(){
@@ -120,8 +102,6 @@ function createLineVoid(i){
 function createVoidCell(i, j){
     createHTML( "DIV", "beforeEnd", ".lineCell-"+i, "cell-"+i+"-"+j, "" );
     createSTYLE("BOX", "cell-"+i+"-"+j, 32, 32, 1, 1, "", "");
-
-    listenerElement(".cell-"+i+"-"+j);
 
     document.querySelector(".cell-"+i+"-"+j).style.boxShadow = "none";
     document.querySelector(".cell-"+i+"-"+j).style.border = "none";

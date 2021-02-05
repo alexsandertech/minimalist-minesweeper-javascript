@@ -48,11 +48,11 @@ function renderTitles(){
 
     createHTML( "DIV", "beforeEnd", ".subTitles", "titleBoard","BOARDSHAPE" );
     createSTYLE("TITLE", "titleBoard", 16, 2);
-        document.querySelector(".titleBoard").style.marginLeft = "123px";
+        document.querySelector(".titleBoard").style.marginLeft = "140px";
 
     createHTML( "DIV", "beforeEnd", ".subTitles", "titleDifficulty","DIFFICULTY" );
     createSTYLE("TITLE", "titleDifficulty", 16, 2);
-        document.querySelector(".titleDifficulty").style.marginRight = "140px";
+        document.querySelector(".titleDifficulty").style.marginRight = "142px";
 }
 
 function renderButtonBack(){
@@ -375,7 +375,7 @@ function renderOptionsTheme(){
 
     createHTML( "DIV", "beforeEnd", ".sideBoxTheme", "titleTheme","THEME" );
     createSTYLE("TITLE", "titleTheme", 16, 2);
-        document.querySelector(".titleTheme").style.marginLeft = "170px";
+        document.querySelector(".titleTheme").style.marginLeft = "167px";
     
     createHTML( "DIV", "beforeEnd", ".sideBoxTheme", "sideScreenTheme","" );
     document.querySelector(".sideScreenTheme").style.width = "300px";

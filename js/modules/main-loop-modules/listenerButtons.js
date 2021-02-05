@@ -1,20 +1,42 @@
-import { runClicked } from "./runClicked.js";
+import { addListenerClickLEFT } from "../general-modules/listenerClick.js";
+import { addListenerClickRIGHT } from "../general-modules/listenerClick.js";
+import { removeListenerClickLEFT } from "../general-modules/listenerClick.js";
+import { removeListenerClickRIGHT } from "../general-modules/listenerClick.js";
 
-export function listenerButtons() {
+export async function addListenerButtons(board) {
+    console.log(" >> Inicializing addListenerClick");
+     
+    addListenerClickLEFT(".btn-back");
+    addListenerClickLEFT(".btn-restart");
+    await addListenerCells(board.column, board.row, board.view);
+
+    console.log(" << Finalizing addListenerClick");
+}
+
+export async function removeListenerButtons(board) {
     console.log(" >> Inicializing listenerButtons");
      
-    listenerElement(".btn-back");
-    listenerElement(".btn-restart");
+    removeListenerClickLEFT(".btn-back");
+    removeListenerClickLEFT(".btn-restart");
+    await removeListenerCells(board.column, board.row, board.view);
 
     console.log(" << Finalizing listenerButtons");
 }
 
-export function listenerElement(item) {
-    document.querySelector(item).addEventListener("click", runClicked);
-    document.querySelector(item).addEventListener("contextmenu", runClicked);
+async function addListenerCells(column, row, view){
+    for(let i=0; i<row; i++)
+        for(let j=0; j<column; j++)
+            if(view[i][j]!=null) {
+                addListenerClickLEFT(".cell-"+i+"-"+j);
+                addListenerClickRIGHT(".cell-"+i+"-"+j);
+            }
 }
 
-export function removeListenerElement(item){
-    document.querySelector(item).removeEventListener("click", runClicked);
-    document.querySelector(item).removeEventListener("contextmenu", runClicked);
+async function removeListenerCells(column, row, view){
+    for(let i=0; i<row; i++)
+        for(let j=0; j<column; j++)
+            if(view[i][j]!=null) {
+                removeListenerClickLEFT(".cell-"+i+"-"+j);
+                removeListenerClickRIGHT(".cell-"+i+"-"+j);
+            }
 }
