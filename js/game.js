@@ -6,12 +6,12 @@ import { final }           from './modules/final.js';
 async function main(){
     calcWindow();
     console.log("Initializing");
-    let options, board, result;
-    let flag = {returMenu: false, resetCurrentBoard: false};
+    let options = null;
+    let board   = {};
+    let result  = [false, null, null];
+    let flag    = {returMenu: false, resetCurrentBoard: false};
 
-    options = null;
     do {
-
         options = await home(options);
         do {
             result  = [false, null, null];

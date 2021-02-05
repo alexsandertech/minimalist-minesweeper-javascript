@@ -5,14 +5,13 @@ import { renderItemsMenu } from './home-modules/renderItemsMenu.js';
 export async function home(options){
     console.log("> Initializing Home");
     
-
     if(options==null) {//Case not inicialized
-        options = {
+        options = {//Initializing default options; 
             typeBoard  : "H",   // H: Hexagon   | T: Triagle     | S: Square 
             difficulty : "E",   // E: Easy Mode | N: Normal Mode | H: Hard Mode | I:Impossible Mode
             theme      : "DARK",//LIGHT
             start      : false
-        };//Initializing default options;    
+        };   
     } else {
         options.start = false;
     }

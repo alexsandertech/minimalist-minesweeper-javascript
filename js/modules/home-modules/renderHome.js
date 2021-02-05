@@ -1,7 +1,6 @@
-import { alignmentFlex }  from '../../components/alignmentElement.js';
-
 import { createHTML }  from '../../components/createHTML.js';
 import { createSTYLE } from '../../components/createSTYLE.js';
+import { alignmentFlex }  from '../../components/alignmentElement.js';
 
 export function renderHome() {
     alignmentFlex("#game", "flex", "column", "space-evenly", "center");
@@ -33,5 +32,4 @@ function renderButtons(){
     createSTYLE("BTN", "btn-instructions", 19, 3, 45, 130);
     createHTML( "DIV", "beforeEnd", ".baseBox", "btn-options", "options");
     createSTYLE("BTN", "btn-options", 20, 3, 45, 130);
-                          // sizeFont, typeBtn, heighty, widthy)
 }
